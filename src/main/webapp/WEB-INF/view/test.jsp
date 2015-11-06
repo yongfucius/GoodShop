@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-test
+
 <c:forEach items="${stringList}" var="item">
 ${item}<br>
 </c:forEach>
