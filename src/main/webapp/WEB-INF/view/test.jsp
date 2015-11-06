@@ -9,7 +9,7 @@
 <body>
 test2
 junho
-큰형님
+test
 <c:forEach items="${stringList}" var="item">
 ${item}<br>
 </c:forEach>
