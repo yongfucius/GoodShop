@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+       
+<tiles-definitions>
+<definition name="base_layout" template="/WEB-INF/tiles/template/layout.jsp" preparer="header">
+	<put-attribute name="header" value="/WEB-INF/tiles/template/header.jsp" />
+	<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+</definition>
+
+<definition name="main" extends="base_layout">
+	<put-attribute name="title" value="제주도 착한가격업소" />
+	<put-attribute name="body" value="/WEB-INF/view/main.jsp" />
+</definition>
+
+<definition name="loginSuccess" extends="base_layout">
+	<put-attribute name="title" value="로그인 성공" />
+	<put-attribute name="body" value="/WEB-INF/tiles/loginSuccess.jsp" />
+</definition>
+
+<definition name="registMemberForm" extends="base_layout">
+	<put-attribute name="title" value="회원가입" />
+	<put-attribute name="body" value="/WEB-INF/tiles/registMemberForm.jsp" />
+</definition>
+
+<definition name="registMember" extends="base_layout">
+	<put-attribute name="title" value="회원가입 완료" />
+	<put-attribute name="body" value="/WEB-INF/tiles/registMember.jsp" />
+</definition>
+
+</tiles-definitions>
