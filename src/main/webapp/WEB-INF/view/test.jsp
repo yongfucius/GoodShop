@@ -8,6 +8,7 @@
 </head>
 <body>
 test2
+junho
 <c:forEach items="${stringList}" var="item">
 ${item}<br>
 </c:forEach>
