@@ -10,6 +10,7 @@
 test2
 junho
 test
+푸쉬
 <c:forEach items="${stringList}" var="item">
 ${item}<br>
 </c:forEach>
