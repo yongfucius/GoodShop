@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+<select id="count" resultType="java.lang.Integer">SELECT COUNT(*) FROM BOARD</select>
+
+<select id="list" resultType="model.BoardCommand">
+SELECT NUM, WRITER, EMAIL, SUBJECT, PASSWD, REG_DATE, REF, RE_STEP, RE_LEVEL, CONTENT, IP, READCOUNT, R 
+FROM (SELECT NUM, WRITER, EMAIL, SUBJECT, PASSWD, REG_DATE, REF, RE_STEP, RE_LEVEL, CONTENT, IP, READCOUNT, ROWNUM R 
+FROM (SELECT NUM, WRITER, EMAIL, SUBJECT, PASSWD, REG_DATE, REF, RE_STEP, RE_LEVEL, CONTENT, IP, READCOUNT 
+FROM BOARD ORDER BY REF DESC, RE_STEP ASC) ORDER BY REF DESC, RE_STEP ASC) WHERE R&gt;=#{startRow} AND R&lt;=#{endRow}
+</select>
+
+<update id="readcountUp">UPDATE BOARD SET READCOUNT=READCOUNT+1 WHERE NUM=#{id}</update>
+<select id="select" resultType="model.BoardCommand">SELECT * FROM BOARD WHERE NUM=#{id}</select>
+
+<select id="selectNum" resultType="java.lang.Integer">SELECT MAX(NUM) FROM BOARD</select>
+<update id="updateRe">UPDATE BOARD SET RE_STEP=RE_STEP+1 WHERE REF=#{ref} AND RE_STEP&gt;#{re_step}</update>
+<insert id="insert" parameterType="model.BoardCommand">
+INSERT INTO BOARD(NUM, WRITER, EMAIL, SUBJECT, PASSWD, REG_DATE, REF, RE_STEP, RE_LEVEL, CONTENT, IP) 
+VALUES(BOARD_NUM.NEXTVAL, #{writer},#{email},#{subject},#{passwd}, SYSDATE,#{ref},#{re_step},#{re_level},#{content},#{ip})
+</insert>
+
+<select id="selectPasswd" resultType="java.lang.String">SELECT PASSWD FROM BOARD WHERE NUM=#{num}</select>
+<delete id="delete">DELETE FROM BOARD WHERE NUM=#{num}</delete>
+
+<update id="update" parameterType="model.BoardCommand">
+UPDATE BOARD 
+SET WRITER=#{writer}, EMAIL=#{email}, SUBJECT=#{subject}, PASSWD=#{passwd}, CONTENT=#{content} 
+WHERE NUM=#{num}
+</update>
+</mapper>

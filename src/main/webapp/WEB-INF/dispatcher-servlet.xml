@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+		
+		<context:property-placeholder location="classpath:db.properties" />
+		
+		<context:annotation-config />
+		
+		<context:component-scan base-package="controller" />
+		
+		<context:component-scan base-package="service" />
+		
+		<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
+			p:basenames="messages.validation" />
+		
+		<bean id="downloadViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+		
+		<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+			p:prefix="/WEB-INF/view/" p:suffix=".jsp" />
+		
+		<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+		
+		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+			p:driverClass="${jdbc.driver}"
+			p:jdbcUrl="${jdbc.url}"
+			p:user="${jdbc.username}"
+			p:password="${jdbc.password}" />
+		
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+			p:dataSource-ref="dataSource"
+			p:mapperLocations="classpath:sql/*.xml" />
+		
+		<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg index="0" ref="sqlSessionFactory" />
+		</bean> -->
+		
+		</beans>
