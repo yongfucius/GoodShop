@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<c:forEach items="${stringList}" var="item">
+<c:forEach items="${test}" var="item">
 ${item}<br>
 </c:forEach>
 

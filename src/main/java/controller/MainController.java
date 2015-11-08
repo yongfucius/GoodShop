@@ -27,9 +27,11 @@ public class MainController {
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		Node title = (Node)xpath.evaluate("//list/dataTitle", document, XPathConstants.NODE);
 		Node contents = (Node)xpath.evaluate("//list/appnPrdlstPc", document, XPathConstants.NODE);
+		Node id = (Node)xpath.evaluate("//list/dataSid", document, XPathConstants.NODE);
 		
 		model.addAttribute("title", title.getTextContent());
 		model.addAttribute("contents", contents.getTextContent());
+		model.addAttribute("id", id.getTextContent());
 		return "main";
 	}
 }
