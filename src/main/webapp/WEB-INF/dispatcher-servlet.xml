@@ -17,10 +17,22 @@
 		
 		<context:component-scan base-package="service" />
 		
+		<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+			<property name="definitions">
+				<list>
+					<value>/WEB-INF/tiles/tiles_def.xml</value>
+				</list>
+			</property>
+			<property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory" />
+		</bean>
+		
 		<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
 			p:basenames="messages.validation" />
 		
 		<bean id="downloadViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+		
+		<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver"
+			p:viewClass="org.springframework.web.servlet.view.tiles3.TilesView" />
 		
 		<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 			p:prefix="/WEB-INF/view/" p:suffix=".jsp" />
