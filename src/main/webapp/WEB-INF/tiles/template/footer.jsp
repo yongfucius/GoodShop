@@ -1,3 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<a href="/GoodShop/">홈페이지 로고</a>
-<a href="http://good.gnpp.kr/">강릉</a>
+<style>
+.footer{
+	width: 1000px;
+	margin: auto;
+}
+.footer img{
+	height: 40px;
+}
+</style>
+
+<div class="footer">
+	<a href="/GoodShop/"><img src="/GoodShop/images/logo.gif"></a>
+	<a href="http://good.gnpp.kr/"><img src="/GoodShop/images/logo_gnpp.gif"></a>
+</div>
