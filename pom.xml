@@ -7,6 +7,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>GoodShop Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <repositories>
+		<repository>
+			<id>oracle</id>
+			<name>ORACLE JDBC Repository</name>
+			<url>http://maven.jahia.org/maven2</url>
+		</repository>
+  </repositories>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -35,6 +42,27 @@
     	<groupId>org.apache.tiles</groupId>
     	<artifactId>tiles-jsp</artifactId>
     </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-jdbc</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.mybatis</groupId>
+    	<artifactId>mybatis</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.mybatis</groupId>
+    	<artifactId>mybatis-spring</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>com.mchange</groupId>
+    	<artifactId>c3p0</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>com.oracle</groupId>
+    	<artifactId>ojdbc6</artifactId>
+    	<version>11.1.0.7.0</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>GoodShop</finalName>
@@ -60,6 +88,26 @@
   			<groupId>org.apache.tiles</groupId>
   			<artifactId>tiles-jsp</artifactId>
   			<version>3.0.5</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>org.springframework</groupId>
+  			<artifactId>spring-jdbc</artifactId>
+  			<version>4.2.1.RELEASE</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>org.mybatis</groupId>
+  			<artifactId>mybatis</artifactId>
+  			<version>3.3.0</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>org.mybatis</groupId>
+  			<artifactId>mybatis-spring</artifactId>
+  			<version>1.2.3</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.mchange</groupId>
+  			<artifactId>c3p0</artifactId>
+  			<version>0.9.5.1</version>
   		</dependency>
   	</dependencies>
   </dependencyManagement>
