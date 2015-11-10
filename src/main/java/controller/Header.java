@@ -19,6 +19,7 @@ public class Header implements ViewPreparer {
 		menuList.add("미용");
 		menuList.add("목욕탕");
 		menuList.add("공지사항");
+		menuList.add("즐겨찾기");
 		attributeContext.putAttribute("menuList", new Attribute(menuList), true);
 	}
 
