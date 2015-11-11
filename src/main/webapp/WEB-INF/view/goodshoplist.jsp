@@ -20,11 +20,11 @@
 	<c:forEach items="${list}" var="goodshop">
 		<img src="/GoodShop/images/photos/${goodshop.dataSid}/${goodshop.dataSid}_01.png">
 		<div class="desc">
-			${goodshop.dataTitle}<br>
+			<a href="/GoodShop/goodshopview.do">${goodshop.dataTitle}<br>
 			${goodshop.appnPrdlstPc}<br>
 			${goodshop.adres}<br>
 			${goodshop.area}<br>
-			${goodshop.telNo}<br>
+			${goodshop.telNo}</a><br>
 		</div>
 	</c:forEach>
 </div>
