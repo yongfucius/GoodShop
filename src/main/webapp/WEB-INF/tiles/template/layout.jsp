@@ -10,6 +10,8 @@
 <tiles:insertAttribute name="header" />
 <hr>
 <tiles:insertAttribute name="body" />
+<div class="history"></div>
+<script type="text/javascript" src="/GoodShop/history.js"></script>
 <hr>
 <tiles:insertAttribute name="footer" />
 <hr>
