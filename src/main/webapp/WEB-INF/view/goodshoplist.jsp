@@ -18,7 +18,7 @@
 </style>
 <div class="goodshoplist">
 	<c:forEach items="${list}" var="goodshop">
-		<img src="/GoodShop/images/photos/${goodshop.dataSid}/${goodshop.dataSid}_01.png">
+		<a href="/GoodShop/goodshopview.do?dataSid=${goodshop.dataSid}"><img src="/GoodShop/images/photos/${goodshop.dataSid}/${goodshop.dataSid}_01.png"></a>
 		<div class="desc">
 			${goodshop.dataTitle}<br>
 			${goodshop.appnPrdlstPc}<br>

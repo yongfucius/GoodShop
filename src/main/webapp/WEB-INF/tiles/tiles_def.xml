@@ -22,6 +22,12 @@
     <put-attribute name="body" value="/WEB-INF/view/goodshoplist.jsp" />
 </definition>
 
+<!-- 착한업소 상세보기 -->
+<definition name="goodshopview" extends="base_layout">
+    <put-attribute name="title" value="착한가격업소" />
+    <put-attribute name="body" value="/WEB-INF/view/goodshopview.jsp" />
+</definition>
+
 <!-- 게시판 -->
 <definition name="notice/list" extends="base_layout">
 	<put-attribute name="title" value="공지사항" />
