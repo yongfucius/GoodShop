@@ -51,6 +51,7 @@ public class GoodShopListController {
 		}
 		
 		model.addAttribute("list", result);
+		
 		return "goodshoplist";
 	}
 
