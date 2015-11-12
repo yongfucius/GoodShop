@@ -1,12 +1,18 @@
 package goodshoplist.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class list {
+public class list implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4183490414274034705L;
+	
 	private String adres;
 	private String appnPrdlstPc;
 	private String area;
