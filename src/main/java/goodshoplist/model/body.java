@@ -17,7 +17,6 @@ public class body {
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
-	
 	@XmlElement
 	public int getStartPage() {
 		return startPage;
@@ -25,7 +24,6 @@ public class body {
 	public void setStartPage(int startPage) {
 		this.startPage = startPage;
 	}
-	
 	@XmlElement
 	public int getTotalCount() {
 		return totalCount;
@@ -33,7 +31,6 @@ public class body {
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
-	
 	@XmlElement
 	public data getData() {
 		return data;

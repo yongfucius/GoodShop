@@ -29,6 +29,7 @@ public class list {
 	public void setAdres(String adres) {
 		this.adres = adres;
 	}
+	
 	@XmlElement
 	public String getAppnPrdlstPc() {
 		return appnPrdlstPc;
@@ -36,6 +37,7 @@ public class list {
 	public void setAppnPrdlstPc(String appnPrdlstPc) {
 		this.appnPrdlstPc = appnPrdlstPc;
 	}
+	
 	@XmlElement
 	public String getArea() {
 		return area;
@@ -43,6 +45,7 @@ public class list {
 	public void setArea(String area) {
 		this.area = area;
 	}
+	
 	@XmlElement
 	public String getBsnTime() {
 		return bsnTime;
@@ -50,6 +53,7 @@ public class list {
 	public void setBsnTime(String bsnTime) {
 		this.bsnTime = bsnTime;
 	}
+	
 	@XmlElement
 	public String getDataContent() {
 		return dataContent;
@@ -57,6 +61,7 @@ public class list {
 	public void setDataContent(String dataContent) {
 		this.dataContent = dataContent;
 	}
+	
 	@XmlElement
 	public String getDataSid() {
 		return dataSid;
@@ -64,6 +69,7 @@ public class list {
 	public void setDataSid(String dataSid) {
 		this.dataSid = dataSid;
 	}
+	
 	@XmlElement
 	public String getDataTitle() {
 		return dataTitle;
@@ -71,6 +77,7 @@ public class list {
 	public void setDataTitle(String dataTitle) {
 		this.dataTitle = dataTitle;
 	}
+	
 	@XmlElement
 	public String getHvofSttus() {
 		return hvofSttus;
@@ -78,6 +85,7 @@ public class list {
 	public void setHvofSttus(String hvofSttus) {
 		this.hvofSttus = hvofSttus;
 	}
+	
 	@XmlElement
 	public int getFileCnt() {
 		return fileCnt;
@@ -85,6 +93,7 @@ public class list {
 	public void setFileCnt(int fileCnt) {
 		this.fileCnt = fileCnt;
 	}
+	
 	@XmlElement
 	public String getInduty() {
 		return induty;
@@ -92,6 +101,7 @@ public class list {
 	public void setInduty(String induty) {
 		this.induty = induty;
 	}
+	
 	@XmlElement
 	public float getPosx() {
 		return posx;
@@ -99,6 +109,7 @@ public class list {
 	public void setPosx(float f) {
 		this.posx = f;
 	}
+	
 	@XmlElement
 	public float getPosy() {
 		return posy;
@@ -106,6 +117,7 @@ public class list {
 	public void setPosy(float f) {
 		this.posy = f;
 	}
+	
 	@XmlElement
 	public Date getRegDate() {
 		return regDate;
@@ -113,12 +125,21 @@ public class list {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+	
 	@XmlElement
 	public String getTelNo() {
 		return telNo;
 	}
 	public void setTelNo(String telNo) {
 		this.telNo = telNo;
+	}
+	
+	@Override
+	public String toString() {
+		return "GoodShopListDao [adres=" + adres + ", appnPrdlstPc=" + appnPrdlstPc + ", area=" + area + ", bsnTime="
+				+ bsnTime + ", dataContent=" + dataContent + ", dataSid=" + dataSid + ", dataTitle=" + dataTitle
+				+ ", hvofSttus=" + hvofSttus + ", fileCnt=" + fileCnt + ", induty=" + induty + ", posx=" + posx
+				+ ", posy=" + posy + ", regDate=" + regDate + ", telNo=" + telNo + "]";
 	}
 	
 }

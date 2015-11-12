@@ -1,23 +1,21 @@
 package goodshoplist.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class data {
-	public data(){
-		lists = new ArrayList<list>();
-	}
-	
-	private Collection<list> lists;
-	
+	private List<list> list = new ArrayList<list>();
+
 	@XmlElement
-	public Collection<list> getLists() {
-		return lists;
+	public List<list> getList() {
+		return list;
 	}
-	public void setLists(Collection<list> lists) {
-		this.lists = lists;
+
+	public void setList(List<list> list) {
+		this.list = list;
 	}
 }
