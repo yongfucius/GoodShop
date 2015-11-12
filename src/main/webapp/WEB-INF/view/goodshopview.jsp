@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <table width="800" border="1" cellspacing="0" cellpadding="0">
 	<tr height="50">
@@ -9,31 +10,31 @@
 			<table>
 				<tr>
 					<th>업종</th>
-					<td>${goodshop.induty}</td>
+					<td>${result.induty}</td>
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td>${goodshop.area} ${goodshop.adres}</td>
+					<td>${result.area} ${result.adres}</td>
 				</tr>
 				<tr>
 					<th>전화번호</th>
-					<td>${goodshop.telNo}</td>
+					<td>${result.telNo}</td>
 				</tr>
 				<tr>
 					<th>주요메뉴</th>
-					<td>${goodshop.appnPrdlstPc}</td>
+					<td>${result.appnPrdlstPc}</td>
 				</tr>
 				<tr>
 					<th>영업시간</th>
-					<td>${goodshop.bsnTime}</td>
+					<td>${result.bsnTime}</td>
 				</tr>
 				<tr>
 					<th>휴무일</th>
-					<td>${goodshop.hvofSttus}</td>
+					<td>${result.hvofSttus}</td>
 				</tr>
 				<tr>
 					<th>상세정보</th>
-					<td>${goodshop.dataContent}</td>
+					<td>${result.dataContent}</td>
 				</tr>
 			</table>
 		</td>
@@ -46,7 +47,7 @@
 <script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=8c7ebb60a16a2b605a0ef322e6bc60c4">
 
 	// 지도 위치 관련 스크립트                                                                                                                       
-	var oPoint = new nhn.api.map.LatLng('${goodshop.posx}', '${goodshop.posy}'); // 위도, 경도 값
+	var oPoint = new nhn.api.map.LatLng(33.4940856, 126.5171490); // 위도, 경도 값
 	nhn.api.map.setDefaultPoint('LatLng');
 	oMap = new nhn.api.map.Map('myMap', {
 		point : oPoint,
@@ -74,7 +75,7 @@
 	var oIcon = new nhn.api.map.Icon(
 			'http://static.naver.com/maps2/icons/pin_spot2.png', oSize, oOffset);
 	var oMarker1 = new nhn.api.map.Marker(oIcon, {
-		title : '${goodshop.dataTitle}'
+		title : '사리원'
 	}); // 마커 위치, 상단 문구
 	oMarker1.setPoint(oPoint);
 	oMap.addOverlay(oMarker1);
