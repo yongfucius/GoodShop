@@ -55,7 +55,6 @@ public class GoodShopListController {
 						.parse(shop.item(12).getTextContent()));
 				goodshop.setTelNo(shop.item(13).getTextContent());
 				list.add(goodshop);
-				System.out.println(goodshop);
 			}
 		}
 

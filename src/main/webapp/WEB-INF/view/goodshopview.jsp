@@ -46,7 +46,7 @@
 <script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=8c7ebb60a16a2b605a0ef322e6bc60c4">
 
 	// 지도 위치 관련 스크립트                                                                                                                       
-	var oPoint = new nhn.api.map.LatLng(33.4940856, 126.5171490); // 위도, 경도 값
+	var oPoint = new nhn.api.map.LatLng('${goodshop.posx}', '${goodshop.posy}'); // 위도, 경도 값
 	nhn.api.map.setDefaultPoint('LatLng');
 	oMap = new nhn.api.map.Map('myMap', {
 		point : oPoint,
@@ -74,7 +74,7 @@
 	var oIcon = new nhn.api.map.Icon(
 			'http://static.naver.com/maps2/icons/pin_spot2.png', oSize, oOffset);
 	var oMarker1 = new nhn.api.map.Marker(oIcon, {
-		title : '사리원'
+		title : '${goodshop.dataTitle}'
 	}); // 마커 위치, 상단 문구
 	oMarker1.setPoint(oPoint);
 	oMap.addOverlay(oMarker1);
