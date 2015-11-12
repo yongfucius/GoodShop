@@ -9,35 +9,31 @@
 			<table>
 				<tr>
 					<th>업종</th>
-					<td>induty</td>
+					<td>${goodshop.induty}</td>
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td>adres</td>
+					<td>${goodshop.area} ${goodshop.adres}</td>
 				</tr>
 				<tr>
 					<th>전화번호</th>
-					<td>telNo</td>
+					<td>${goodshop.telNo}</td>
 				</tr>
 				<tr>
 					<th>주요메뉴</th>
-					<td>appnPrdlstPc</td>
+					<td>${goodshop.appnPrdlstPc}</td>
 				</tr>
 				<tr>
 					<th>영업시간</th>
-					<td>bsnTime</td>
+					<td>${goodshop.bsnTime}</td>
 				</tr>
 				<tr>
 					<th>휴무일</th>
-					<td>hvofSttus</td>
+					<td>${goodshop.hvofSttus}</td>
 				</tr>
 				<tr>
 					<th>상세정보</th>
-					<td>dataContent</td>
-				</tr>
-				<tr>
-					<td cellspan="2">
-						<img src="" />즐겨찾기</td>
+					<td>${goodshop.dataContent}</td>
 				</tr>
 			</table>
 		</td>
@@ -46,10 +42,10 @@
 
 
 <div id="shopMap" style="width: 600px; border: 1px solid black; height: 400px; margin: 20px auto; display: block;"></div>
-<script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=8c7ebb60a16a2b605a0ef322e6bc60c4"></script>
-<script type="text/javascript">
 
-	// 지도 위치 관련 스크립트                                                                                                                                                                         
+<script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=8c7ebb60a16a2b605a0ef322e6bc60c4">
+
+	// 지도 위치 관련 스크립트                                                                                                                       
 	var oPoint = new nhn.api.map.LatLng(33.4940856, 126.5171490); // 위도, 경도 값
 	nhn.api.map.setDefaultPoint('LatLng');
 	oMap = new nhn.api.map.Map('myMap', {
