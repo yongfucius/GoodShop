@@ -53,11 +53,13 @@ public class GoodShopListController {
 		
 		return "goodshoplist";
 	}
-
+	
 	private boolean find(String[] induty, String textContent) {
 		for (int i = 0; i < induty.length; i++) {
-			if(induty[i].equals(textContent)) return true;
+			if (induty[i].equals(textContent))
+				return true;
 		}
 		return false;
 	}
+
 }

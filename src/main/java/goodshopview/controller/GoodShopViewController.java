@@ -17,7 +17,6 @@ import goodshoplist.model.rfcOpenApi;
 
 @Controller
 public class GoodShopViewController {
-	
 	@RequestMapping("goodshopview.do")
 	public String view(String dataSid, Model model) throws MalformedURLException{
 		JAXBContext jc = null;
