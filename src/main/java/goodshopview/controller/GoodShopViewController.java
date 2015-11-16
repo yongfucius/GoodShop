@@ -36,6 +36,7 @@ public class GoodShopViewController {
 		List<list> list = rfc.getBody().getData().getList(); 
 		list result = list.get(0);
 		model.addAttribute("result", result);
+		
 		return "goodshopview";
 	}
 
