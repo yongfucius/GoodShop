@@ -23,7 +23,6 @@ public class GoodShopViewController {
 		JAXBContext jc = null;
 		Unmarshaller unmrsllr = null;
 		rfcOpenApi rfc = null;
-		System.out.println(dataSid);
 		try {
 			jc = JAXBContext.newInstance(rfcOpenApi.class);
 			unmrsllr = jc.createUnmarshaller();
@@ -34,20 +33,10 @@ public class GoodShopViewController {
 			e.printStackTrace();
 		}
 		
-		System.out.println(rfc.getBody().getTotalCount());
 		List<list> list = rfc.getBody().getData().getList(); 
 		list result = list.get(0);
 		model.addAttribute("result", result);
-
-		System.out.println(result);
-
 		return "goodshopview";
 	}
 
-	private boolean find(String dataSid, String textContent) {
-		if(dataSid.equals(textContent)) {
-			return true;
-		}
-		return false;
-	}
 }
