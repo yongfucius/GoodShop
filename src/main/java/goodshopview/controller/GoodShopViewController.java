@@ -39,8 +39,6 @@ public class GoodShopViewController {
 		list result = list.get(0);
 		model.addAttribute("result", result);
 
-		System.out.println(result);
-
 		return "goodshopview";
 	}
 
