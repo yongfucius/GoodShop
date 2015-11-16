@@ -1,10 +1,8 @@
 package main.controller;
 
-import java.io.IOException;
 import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
@@ -14,10 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-import org.xml.sax.SAXException;
 
 @Controller
 public class MainController {
+	
 	@RequestMapping("main.do")
 	public String main(Model model) throws Exception{
 		int randIdx = new Random().nextInt(140);

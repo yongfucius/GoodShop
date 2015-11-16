@@ -15,7 +15,3 @@
 	${title}<br>
 	${contents}
 </div>
-<div class="history">
-</div>
-<script>
-</script>
