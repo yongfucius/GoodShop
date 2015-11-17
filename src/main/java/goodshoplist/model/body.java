@@ -1,10 +1,17 @@
 package goodshoplist.model;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class body {
+public class body implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -802289697389459853L;
+	
 	private int pageSize;
 	private int startPage;
 	private int totalCount;

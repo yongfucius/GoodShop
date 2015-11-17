@@ -5,11 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:getAsString name="title" /></title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
 <tiles:insertAttribute name="header" />
 <hr>
 <tiles:insertAttribute name="body" />
+<tiles:insertAttribute name="history" />
 <hr>
 <tiles:insertAttribute name="footer" />
 <hr>

@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -22,9 +21,9 @@ import goodshoplist.model.list;
 public class GoodShopListController {
 	
 	@RequestMapping("goodshoplist.do")
-	public String list(String[] induty, HttpServletRequest request, Model model) throws MalformedURLException{
-		HttpSession session = request.getSession();
+	public String list(String[] induty, HttpSession session, Model model) throws MalformedURLException{
 		rfcOpenApi rfc = (rfcOpenApi) session.getAttribute("all");
+		
 		if(rfc == null){
 			JAXBContext jc = null;
 			Unmarshaller unmrsllr = null;
@@ -51,13 +50,16 @@ public class GoodShopListController {
 		}
 		
 		model.addAttribute("list", result);
+		
 		return "goodshoplist";
 	}
-
+	
 	private boolean find(String[] induty, String textContent) {
 		for (int i = 0; i < induty.length; i++) {
-			if(induty[i].equals(textContent)) return true;
+			if (induty[i].equals(textContent))
+				return true;
 		}
 		return false;
 	}
+
 }

@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%-- <%@ include file="../style/color.jspf" %> --%>
 <link href="../style/style.css" rel="stylesheet" type="text/css">
-<script src="script.js"></script>
+<script src="scripts/script.js"></script>
 <center><b>글쓰기</b><br>
 <form:form name="writeform" action="writeForm.do?pageNum=${pageNum}" onsubmit="return writeSave()">
 <form:hidden path="num" />

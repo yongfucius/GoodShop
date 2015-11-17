@@ -8,6 +8,7 @@
 <definition name="base_layout" template="/WEB-INF/tiles/template/layout.jsp" preparer="header">
 	<put-attribute name="header" value="/WEB-INF/tiles/template/header.jsp" />
 	<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+	<put-attribute name="history" value="/WEB-INF/tiles/template/history.jsp"/>
 </definition>
 
 <!-- 메인 -->
@@ -16,10 +17,22 @@
 	<put-attribute name="body" value="/WEB-INF/view/main.jsp" />
 </definition>
 
+<!-- 회원가입 -->
+<definition name="signUp" extends="base_layout">
+	<put-attribute name="title" value="회원등록" />
+	<put-attribute name="body" value="/WEB-INF/view/signUp.jsp" />
+</definition>
+
 <!-- 착한업소 리스트 -->
 <definition name="goodshoplist" extends="base_layout">
     <put-attribute name="title" value="착한가격업소 목록" />
     <put-attribute name="body" value="/WEB-INF/view/goodshoplist.jsp" />
+</definition>
+
+<!-- 착한업소 상세보기 -->
+<definition name="goodshopview" extends="base_layout">
+    <put-attribute name="title" value="착한가격업소" />
+    <put-attribute name="body" value="/WEB-INF/view/goodshopview.jsp" />
 </definition>
 
 <!-- 게시판 -->
