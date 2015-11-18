@@ -49,7 +49,7 @@
 	style="width: 600px; border: 1px solid black; height: 400px; margin: 20px auto; display: block;"></div>
 
 <script type="text/javascript"
-	src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=50ad12f791ecb19b02ab82847d051690"></script>
+	src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=d39e0827c7427bab5cc771977e72a51c"></script>
 
 <script type="text/javascript">
 	var oPoint = new nhn.api.map.LatLng('${result.posy}', '${result.posx}'); // 위도(posy), 경도(posx)

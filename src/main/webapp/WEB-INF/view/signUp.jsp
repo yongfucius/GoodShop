@@ -34,36 +34,36 @@
 }
 
 </style>
-
+<c:choose>
+<c:when test="${complete}">
+<div class="complete" style="width:400px; height:400px; margin:auto; font-size:30px; text-align:center;">가입이 완료되었습니다. </div>
+</c:when> 
+<c:otherwise>
 <script src="scripts/signUp.js"></script>
 <div class="signform">
-	<form:form commandName="command">
+	<form:form commandName="command" onsubmit="return checkSubmit();">
 	<div class="form_id">
 		<form:input path="id" placeholder="아이디" onblur="checkId();" maxlength="20"/>
 		<label id="id_msg" ></label>
 	</div>
 	<div class="form_pwd">
-		<form:password path="pwd" placeholder="비밀번호" onkeypress="checkCapsLock(event);" onblur="checkPwd();" maxlength="20"/>
+		<form:password path="pwd" placeholder="비밀번호" onkeypress="checkCapsLock(event, 'pwd', 'pwd_msg');" onblur="checkPwd();" maxlength="20"/>
 		<label id="pwd_msg"></label>
 	</div>
 	<div class="form_pwdchk">
-		<input type="password" id="pwdchk" name="pwdchk" placeholder="비밀번호 확인" onkeypress="checkCapsLock2(event);" onblur="checkPwd2();" maxlength="20"/>
+		<input type="password" id="pwdchk" name="pwdchk" placeholder="비밀번호 확인" onkeypress="checkCapsLock(event, 'pwdchk', 'pwdchk_msg');" onblur="checkPwdChk();" maxlength="20"/>
 		<label id="pwdchk_msg"></label>
 	</div>
 	<div class="form_email">
-		<form:input path="email" placeholder="이메일"/>
+		<form:input path="email" placeholder="이메일" onblur="checkEmail();" maxlength="40"/>
 		<label id="email_msg"></label>
 	</div>
 	<div class="form_name">
-		<form:input path="name" placeholder="닉네임"/>
+		<form:input path="name" placeholder="닉네임" onblur="checkName();" maxlength="10"/>
 		<label id="name_msg"></label>
-	</div>
-	<div class="form_zipcode">
-		<form:input path="zipcode" placeholder="우편번호"/>
-	</div>
-	<div class="form_address">
-		<form:input path="address" placeholder="주소"/>
 	</div>
 	<div class="form_submit"><input type="submit" value="가입하기" id="submit"/></div>
 	</form:form>
 </div>
+</c:otherwise>
+</c:choose>

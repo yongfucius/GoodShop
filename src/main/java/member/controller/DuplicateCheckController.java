@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import member.service.MemberService;
 
@@ -18,17 +19,24 @@ public class DuplicateCheckController {
 	}
 	
 	@RequestMapping("duplicateId.do")
-	public String duplicateCheckId(String id, Model model){
+	@ResponseBody
+	public String duplicateCheckId(String id){
 		int count = service.checkId(id);
 		
-		model.addAttribute("dup", count);
-		return "dup";
+		return ""+count;
+	}
+	@RequestMapping("duplicateEmail.do")
+	@ResponseBody
+	public String duplicateCheckEmail(String email){
+		int count = service.checkEmail(email);
+		
+		return ""+count;
 	}
 	@RequestMapping("duplicateName.do")
-	public String duplicateCheckName(String name, Model model){
+	@ResponseBody
+	public String duplicateCheckName(String name){
 		int count = service.checkName(name);
 		
-		model.addAttribute("dup", count);
-		return "dup";
+		return ""+count;
 	}
 }

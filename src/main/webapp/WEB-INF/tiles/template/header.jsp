@@ -18,14 +18,14 @@
 
 .sign{
 	position: absolute;
-	top: 5px;
+	top: 10px;
 	right: 10px;
-	width: 360px;
+	width: 380px;
 	height: 50px;
 }
 .sign .login{
 	position:relative;
-	width: 360px;
+	width: 380px;
 	height: 25px
 }
 
@@ -41,7 +41,7 @@
 	<div class="title">
 		<a href="/GoodShop/"><img src="/GoodShop/images/logo.gif"></a>
 		<a href="http://www.goodprice.go.kr">
-		<img src="/GoodShop/images/logo_gov.jpg" style="height:50px; position:absolute; margin-left:20px; top:10px;">
+		<img src="/GoodShop/images/logo_gov.jpg" style="height:45px; position:absolute; margin-left:20px; top:10px;">
 		</a>
 	</div>
 	
@@ -65,19 +65,40 @@
 		else if(chk == "0") alert("비밀번호가 맞지 않습니다. ");
 		else return;
 	}
+	
+	function checkCapsLock(e){
+		var pwd = document.getElementById("login_pwd");
+		var msg = document.getElementById("login_pwd_msg");
+		var kc = e.keyCode ? e.keyCode : e.which;
+		var sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+		console.log(kc);
+		console.log(sk);
+		if (((kc >= 65 && kc <= 90) && !sk)	|| ((kc >= 97 && kc <= 122) && sk)) {
+			pwd.style.border = "2px solid darkorange";
+			msg.innerHTML = "Caps Lock이 켜져 있습니다.";
+			return false;
+		} else {
+			pwd.style.border = "";
+			msg.innerHTML = "";
+			return true;
+		}
+	}
+	
+	$(document).ready(check);
 	</script>
 	<div class="sign">
 		<div class="login">
 		<c:choose>
 			<c:when test="${sessionScope.check == 1}">
 				<c:out value="${sessionScope.memId}" />
+				<button onclick="location.href='memberInfo.do'">회원정보</button>
 				<button onclick="location.href='signOut.do'">로그아웃</button>
 			</c:when>
 			<c:otherwise>
-				<script>check();</script>
+				<label id="login_pwd_msg" style="position:absolute; top:-15px; height:15px; width:200px; right:50px; font-weight:bold; font-size:12px; color:darkorange;"></label>
 				<form name="login" method="post" action="signIn.do" onsubmit="return space();">
 					<label for="login_id" >계정&nbsp;</label><input type="text" id="login_id" name="login_id" size="10" value="${sessionScope.memId}"/>
-					<label for="login_pwd" >비밀번호&nbsp;</label><input type="password" id="login_pwd" name="login_pwd" size="10"/>
+					<label for="login_pwd" >비밀번호&nbsp;</label><input type="password" id="login_pwd" name="login_pwd" size="10" onkeypress="checkCapsLock(event);"/>
 					<input type="submit" value="로그인" />
 				</form>
 				<c:remove var="check" scope="session" />
@@ -85,7 +106,7 @@
 			</c:otherwise>
 		</c:choose>
 		</div>
-		<button onclick="location.href='signUp.do'">회원가입</button>
+		<button onclick="location.href='signUp.do'" style="margin-top:3px">회원가입</button>
 	</div>
 	
 	<tiles:importAttribute name="menuList" />
