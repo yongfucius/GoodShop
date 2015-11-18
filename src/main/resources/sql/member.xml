@@ -9,13 +9,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 <insert id="signUpMember" parameterType="member.model.MemberCommand">
-    INSERT INTO MEMBER VALUES(#{id}, #{email}, #{pwd}, #{phone}, #{name}, #{zipcode}, #{address}, 0)
+    INSERT INTO MEMBER VALUES(#{id}, #{email}, #{pwd}, #{name}, 0, SYSDATE)
 </insert>
 
 <select id="checkId" resultType="java.lang.Integer">
     SELECT COUNT(ID) FROM MEMBER WHERE ID=#{id}
 </select>
+<select id="checkEmail" resultType="java.lang.Integer">
+    SELECT COUNT(EMAIL) FROM MEMBER WHERE EMAIL=#{email}
+</select>
 <select id="checkName" resultType="java.lang.Integer">
     SELECT COUNT(NAME) FROM MEMBER WHERE NAME=#{name}
 </select>
+
+<update id="updateMember" parameterType="member.model.MemberCommand">
+    UPDATE MEMBER SET NAME=#{name}, EMAIL=#{email}, PWD=#{pwd} WHERE ID=#{id}
+</update>
 </mapper>
