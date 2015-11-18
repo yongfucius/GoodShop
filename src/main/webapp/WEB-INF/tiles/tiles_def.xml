@@ -23,6 +23,12 @@
 	<put-attribute name="body" value="/WEB-INF/view/signUp.jsp" />
 </definition>
 
+<!-- 회원정보 -->
+<definition name="memberInfo" extends="base_layout">
+	<put-attribute name="title" value="회원정보" />
+	<put-attribute name="body" value="/WEB-INF/view/memberInfo.jsp" />
+</definition>
+
 <!-- 착한업소 리스트 -->
 <definition name="goodshoplist" extends="base_layout">
     <put-attribute name="title" value="착한가격업소 목록" />

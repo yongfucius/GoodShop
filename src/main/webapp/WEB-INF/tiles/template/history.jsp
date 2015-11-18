@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 .history{
-	width: 150px;
-	height: 400px;
-	position: fixed;
-	left: 50%;
-	top: 200px;
-	margin-left: 500px;
+	width: 200px;
+    height: 500px;
+    position: fixed;
+    left: 50%;
+    top: 200px;
+    margin-left: 520px;
 }
 </style>
 
@@ -18,7 +18,6 @@
 <script>
 function makeList(){
 	var historyCookie = decodeURIComponent(getCookie("historyList"));
-	console.log(historyCookie);
 	if(historyCookie == "") var historyList = [];
 	else var historyList = JSON.parse(historyCookie);
 	
@@ -31,7 +30,7 @@ function makeList(){
 		for(var i = 0; i < historyList.length; i++){
 			var item = document.createElement("div");
 			item.className = "history_item";
-			console.log(item);
+			
 			var content = "";
 			content += historyList[i].dataTitle+"<br>";
 			content += historyList[i].appnPrdlstPc;
