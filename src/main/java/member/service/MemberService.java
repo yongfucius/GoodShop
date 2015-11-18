@@ -19,7 +19,7 @@ public class MemberService {
 	public int signIn(String id, String pwd){
 		int x = -1;
 		try{
-			MemberCommand member = sql.selectOne("member.selectMember", id);
+			MemberCommand member = getMember(id);
 			if(member.getPwd().equals(pwd)) return x = 1;
 			else return x = 0;
 		}catch(NullPointerException e){
@@ -37,8 +37,28 @@ public class MemberService {
 		int x = sql.selectOne("member.checkId", id);
 		return x;
 	}
+	public int checkEmail(String email) {
+		int x = sql.selectOne("member.checkEmail", email);
+		return x;
+	}
 	public int checkName(String name){
 		int x = sql.selectOne("member.checkName", name);
 		return x;
+	}
+	
+	public MemberCommand getMember(String id){
+		MemberCommand member = sql.selectOne("member.selectMember", id);
+		
+		return member;
+	}
+	
+	public MemberCommand updateMember(String id, String kind, String value){
+		MemberCommand member = getMember(id);
+		if(kind.equals("name")) member.setName(value);
+		if(kind.equals("email")) member.setEmail(value);
+		if(kind.equals("pwd")) member.setPwd(value);
+		sql.update("member.updateMember", member);
+		
+		return getMember(id);
 	}
 }
