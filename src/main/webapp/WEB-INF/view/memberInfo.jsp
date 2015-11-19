@@ -52,35 +52,35 @@ $(document).ready(function(){
 <tr>
 <td><div class="kind"><br><b>이름</b></div></td>
 <td>
-<div class=value id="value_name">${member.name}</div>
-<div class="value" id="name_div" style="display:none;">
+<div class="value" id="value_name">${member.name}</div>
+<div class="value_div" id="name_div" style="display:none;">
 <label id="info_name_msg">수정할 내용을 입력하세요. </label>
 <form method="post" onsubmit="return checkInfoNameSubmit();">
 <input type="text" id="info_name" name="name" size="10" maxlength="10" onblur="checkInfoName();">
 <input type="submit" value="확인">
 </form>
-<button onclick="cancelForm('name_div');">취소</button>
+<button class="cancel">취소</button>
 </div>
-<button id="cancel_name" class="cancel" onclick="replaceForm('name_div');">수정</button></td>
+<button class="btn">수정</button>
 </tr>
 <tr>
 <td><div class="kind"><br><b>이메일</b></div></td>
 <td>
-<div class=value id="value_email">${member.email}</div>
-<div class="value" id="email_div" style="display:none;">
+<div class="value" id="value_email">${member.email}</div>
+<div class="value_div" id="email_div" style="display:none;">
 <label id="info_email_msg">수정할 내용을 입력하세요. </label>
 <form method="post" onsubmit="return checkInfoEmailSubmit();">
 <input type="text" id="info_email" name="email" size="30" maxlength="40" onblur="checkInfoEmail();">
 <input type="submit" value="확인">
 </form>
-<button onclick="cancelForm('email_div');">취소</button>
+<button class="cancel">취소</button>
 </div>
-<button id="cancel_email" class="cancel" onclick="replaceForm('email_div');">수정</button></td>
+<button class="btn">수정</button>
 </tr>
 <tr>
 <td><div class="kind"><br><b>비밀번호</b></div></td>
 <td>
-<div class="value" id="pwd_div" style="display:none;">
+<div class="value_div" id="pwd_div" style="display:none;">
 <form method="post" onsubmit="return checkInfoPwdSubmit();">
 <table class="pwd_table">
 <tr>
@@ -105,8 +105,8 @@ $(document).ready(function(){
 </tr>
 </table>
 </form>
-<button onclick="cancelForm('pwd_div')">취소</button>
+<button class="cancel">취소</button>
 </div>
-<button id="cancel_pwd" class="cancel" onclick="replaceForm('pwd_div');">수정</button>
+<button class="btn">수정</button>
 </td>
 </table>
