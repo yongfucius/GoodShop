@@ -29,6 +29,12 @@
 	<put-attribute name="body" value="/WEB-INF/view/memberInfo.jsp" />
 </definition>
 
+<!-- 착한업소 소개 -->
+<definition name="goodshopinfo" extends="base_layout">
+	<put-attribute name="title" value="착한가격업소" />
+	<put-attribute name="body" value="/WEB-INF/view/goodshopinfo.jsp" />
+</definition>
+
 <!-- 착한업소 리스트 -->
 <definition name="goodshoplist" extends="base_layout">
     <put-attribute name="title" value="착한가격업소 목록" />
@@ -42,14 +48,14 @@
 </definition>
 
 <!-- 게시판 -->
-<definition name="notice/list" extends="base_layout">
+<definition name="noticelist" extends="base_layout">
 	<put-attribute name="title" value="공지사항" />
-	<put-attribute name="body" value="/WEB-INF/view/notice/list.jsp" />
+	<put-attribute name="body" value="/WEB-INF/view/notice/noticelist.jsp" />
 </definition>
 
-<definition name="notice/writeForm" extends="base_layout">
+<definition name="noticewriteForm" extends="base_layout">
 	<put-attribute name="title" value="글쓰기" />
-	<put-attribute name="body" value="/WEB-INF/view/notice/writeForm.jsp" />
+	<put-attribute name="body" value="/WEB-INF/view/notice/noticewriteForm.jsp" />
 </definition>
 
 </tiles-definitions>

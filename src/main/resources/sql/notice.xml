@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="count" resultType="java.lang.Integer">SELECT COUNT(*) FROM NOTICE</select>
 
 <select id="list" resultType="notice.model.NoticeCommand">
-SELECT NUM, SUBJECT, CONTENT, REGDATE, READCOUNT, WRITER, IP, ROWNUM 
-FROM NOTICE ORDER BY NUM DESC WHERE ROWNUM&gt;=#{startRow} AND ROWNUM&lt;=#{endRow}
+SELECT NUM, SUBJECT, CONTENT, REGDATE, READCOUNT, WRITER, IP, ID, ROWNUM 
+FROM NOTICE WHERE ROWNUM&gt;=#{startRow} AND ROWNUM&lt;=#{endRow} ORDER BY NUM DESC
 </select>
 
 <update id="readcountUp">UPDATE NOTICE SET READCOUNT=READCOUNT+1 WHERE NUM=#{id}</update>
@@ -15,8 +15,8 @@ FROM NOTICE ORDER BY NUM DESC WHERE ROWNUM&gt;=#{startRow} AND ROWNUM&lt;=#{endR
 
 <select id="selectNum" resultType="java.lang.Integer">SELECT MAX(NUM) FROM NOTICE</select>
 <insert id="insert" parameterType="notice.model.NoticeCommand">
-INSERT INTO NOTICE(NUM, SUBJECT, CONTENT, REGDATE, READCOUNT, WRITER, IP) 
-VALUES(#{num},#{subject},#{content},SYSDATE,0,#{writer},#{ip})
+INSERT INTO NOTICE(NUM, SUBJECT, CONTENT, REGDATE, READCOUNT, WRITER, IP, ID) 
+VALUES(#{num},#{subject},#{content},SYSDATE,0,#{writer},#{ip}, #{id})
 </insert>
 
 <select id="selectPasswd" resultType="java.lang.String">SELECT PASSWD FROM NOTICE WHERE NUM=#{num}</select>

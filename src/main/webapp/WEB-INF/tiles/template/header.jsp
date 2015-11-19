@@ -36,61 +36,62 @@
 	width: 160px;
 }
 </style>
+<script>
+function space(){
+	if(!document.login.login_id.value.trim()){
+		alert("계정을 입력하지 않았습니다. ");
+		document.login.login_id.focus();
+		return false;
+	}
+	if(!document.login.login_pwd.value.trim()){
+		alert("비밀번호를 입력하지 않았습니다. ");
+		document.login.login_pwd.focus();
+		return false;
+	}
+}
+
+function check(){
+	chk = "<c:out value='${sessionScope.check}'/>";
+	if(chk == "-1") alert("해당하는 계정이 없습니다. ");
+	else if(chk == "0") alert("비밀번호가 맞지 않습니다. ");
+	else return;
+}
+
+function checkCapsLock(e){
+	var pwd = document.getElementById("login_pwd");
+	var msg = document.getElementById("login_pwd_msg");
+	var kc = e.keyCode ? e.keyCode : e.which;
+	var sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+	console.log(kc);
+	console.log(sk);
+	if (((kc >= 65 && kc <= 90) && !sk)	|| ((kc >= 97 && kc <= 122) && sk)) {
+		pwd.style.border = "2px solid darkorange";
+		msg.innerHTML = "Caps Lock이 켜져 있습니다.";
+		return false;
+	} else {
+		pwd.style.border = "";
+		msg.innerHTML = "";
+		return true;
+	}
+}
+
+$(document).ready(check);
+</script>
 
 <div class="header">
 	<div class="title">
 		<a href="/GoodShop/"><img src="/GoodShop/images/logo.gif"></a>
-		<a href="http://www.goodprice.go.kr">
-		<img src="/GoodShop/images/logo_gov.jpg" style="height:45px; position:absolute; margin-left:20px; top:10px;">
+		<a href="http://www.goodprice.go.kr" target="_blank">
+			<img src="/GoodShop/images/logo_gov.jpg" style="height:45px; position:absolute; margin-left:20px; top:10px;">
 		</a>
 	</div>
 	
-	<script>
-	function space(){
-		if(!document.login.login_id.value.trim()){
-			alert("계정을 입력하지 않았습니다. ");
-			document.login.login_id.focus();
-			return false;
-		}
-		if(!document.login.login_pwd.value.trim()){
-			alert("비밀번호를 입력하지 않았습니다. ");
-			document.login.login_pwd.focus();
-			return false;
-		}
-	}
 	
-	function check(){
-		chk = "<c:out value='${sessionScope.check}'/>";
-		if(chk == "-1") alert("해당하는 계정이 없습니다. ");
-		else if(chk == "0") alert("비밀번호가 맞지 않습니다. ");
-		else return;
-	}
-	
-	function checkCapsLock(e){
-		var pwd = document.getElementById("login_pwd");
-		var msg = document.getElementById("login_pwd_msg");
-		var kc = e.keyCode ? e.keyCode : e.which;
-		var sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
-		console.log(kc);
-		console.log(sk);
-		if (((kc >= 65 && kc <= 90) && !sk)	|| ((kc >= 97 && kc <= 122) && sk)) {
-			pwd.style.border = "2px solid darkorange";
-			msg.innerHTML = "Caps Lock이 켜져 있습니다.";
-			return false;
-		} else {
-			pwd.style.border = "";
-			msg.innerHTML = "";
-			return true;
-		}
-	}
-	
-	$(document).ready(check);
-	</script>
 	<div class="sign">
 		<div class="login">
 		<c:choose>
 			<c:when test="${sessionScope.check == 1}">
-				<c:out value="${sessionScope.memId}" />
+				<c:out value="${sessionScope.memName}" />
 				<button onclick="location.href='memberInfo.do'">회원정보</button>
 				<button onclick="location.href='signOut.do'">로그아웃</button>
 			</c:when>

@@ -10,6 +10,7 @@ public class NoticeCommand {
 	private int readcount;
 	private String writer;
 	private String ip;
+	private String id;
 	
 	public int getNum() {
 		return num;
@@ -53,4 +54,11 @@ public class NoticeCommand {
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	
 }
