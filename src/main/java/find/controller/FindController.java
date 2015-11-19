@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -36,18 +37,16 @@ public class FindController {
 	public void setService(FindService service) {
 		this.service = service;
 	}
-
+	
 	@RequestMapping("find.do")
-	public String find(String id, Model model) throws MalformedURLException {
+	public String find(HttpSession session, Model model) throws MalformedURLException {
 		JAXBContext jc = null;
 		Unmarshaller unmrsllr = null;
 		rfcOpenApi rfc = null;
-		id = "admin";
-		List<String> dataSidList = service.selectsid(id);//id 값으로 datasid값 list로 받아
-		System.out.println(dataSidList);
-		
 		List<list> result = new ArrayList<list>();
 		try {
+			String id = (String)session.getAttribute("memId");
+			List<String> dataSidList = service.selectsid(id);//id 값으로 datasid값 list로 받아		
 			jc = JAXBContext.newInstance(rfcOpenApi.class);
 			unmrsllr = jc.createUnmarshaller();
 			for(String dataSid : dataSidList){
@@ -61,8 +60,6 @@ public class FindController {
 		}
 
 		model.addAttribute("list", result);
-
-		System.out.println(result);
 
 		return "find";
 	}

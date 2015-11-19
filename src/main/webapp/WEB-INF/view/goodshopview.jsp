@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <h3 align=center>${result.dataTitle}</h3>
 <table width="900" align="center">
 	<tr height="50">
@@ -40,11 +41,39 @@
 					<th>상세정보</th>
 					<td>${result.dataContent}</td>
 				</tr>
-			</table>
+			</table>			
+			
+			<c:forEach var="sid" items="${dataSidList}">
+				<c:if test="${sid ==  result.dataSid}">
+					<c:set var="sidcheck" value="true"/>					
+				</c:if>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${sidcheck == true }">
+					<a href=""><img src="/GoodShop/images/find/find1.png"></a>
+				</c:when>
+				<c:otherwise>
+					<a href=""><img src="/GoodShop/images/find/find2.png"></a>
+				</c:otherwise>
+			</c:choose>
+			
+			
+			<%-- <c:forEach var="sid" items="${dataSidList}">
+				<c:choose>
+					<c:when test="${sid == result.dataSid}">
+						<c:set var="src" value="/GoodShop/images/find/find1.png" />
+					</c:when>
+					<c:otherwise>
+						<c:set var="src" value="/GoodShop/images/find/find2.png" />
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>			
+			<img src="${src}" alt="select"> --%>
 		</td>
 	</tr>
 </table>
-
+<td width=30%>
+</td>
 <div id="shopMap"
 	style="width: 600px; border: 1px solid black; height: 400px; margin: 20px auto; display: block;"></div>
 

@@ -3,7 +3,15 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="find">
-    <select id="selectsid" resultType="java.lang.String">SELECT DATASID FROM FAVORITE WHERE ID=#{ID}</select>   
-    
+    <select id="selectsid" resultType="java.lang.String">
+        SELECT DATASID FROM FAVORITE WHERE ID=#{ID}
+    </select>   
+        
+<!--      <insert id="insertfind" parameterType="member.model.FindCommand">
+        INSERT INTO FAVORITE VALUES(#{ID},#{DATASID})        
+    </insert>
+    <delete id="deletefind" parameterType="member.model.FindCommand">
+        DELETE FROM FAVORITE WHERE ID=#{ID} AND DATASID=#{DATASID}
+    </delete> -->
     
 </mapper>
