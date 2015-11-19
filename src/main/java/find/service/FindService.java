@@ -1,9 +1,6 @@
 package find.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,23 +17,22 @@ public class FindService {
 	}
 	
 	public List<String> selectsid(String id){
+		if(id == null) return null;
 		List<String> datasid = session.selectList("find.selectsid",id);
 		return datasid;
 	}
 	
-/*	public List<FindCommand> insertFind(String id, String datasid){
-		Map<String, String> bound = new HashMap<String, String>();
-		bound.put("id", id);
-		bound.put("datasid", datasid);
-		List<FindCommand> list = session.selectList("find.insertfind",bound);
-		return list;		
+	public int insertFind(String dataSid, String id){
+		FindCommand find = new FindCommand(dataSid, id);
+		int x = session.insert("find.insertfind", find);
+		
+		return x;
 	}
-	public List<FindCommand> deleteFind(String id, String datasid){
-		Map<String, String> bound = new HashMap<String, String>();
-		bound.put("id", id);
-		bound.put("datasid", datasid);
-		List<FindCommand> list = session.selectList("find.deletefind",bound);
-		return list;		
-	}*/
+	public int deleteFind(String dataSid, String id){
+		FindCommand find = new FindCommand(dataSid, id);
+		int x = session.delete("find.deletefind", find);
+		
+		return x;
+	}
 	
 }
