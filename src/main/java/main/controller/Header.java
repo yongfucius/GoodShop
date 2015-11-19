@@ -21,7 +21,6 @@ public class Header implements ViewPreparer {
 		menuList.add("/GoodShop/goodshoplist.do?induty=이미용업");
 		menuList.add("/GoodShop/goodshoplist.do?induty=민박업&induty=목욕업");
 		menuList.add("/GoodShop/noticelist.do");
-		menuList.add("/GoodShop/find.do");
 		
 		attributeContext.putAttribute("menuList", new Attribute(menuList), true);
 	}

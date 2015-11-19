@@ -93,6 +93,7 @@ $(document).ready(check);
 			<c:when test="${sessionScope.check == 1}">
 				<c:out value="${sessionScope.memName}" />
 				<button onclick="location.href='memberInfo.do'">회원정보</button>
+				<button onclick="location.href='find.do'">즐겨찾기</button>
 				<button onclick="location.href='signOut.do'">로그아웃</button>
 			</c:when>
 			<c:otherwise>
