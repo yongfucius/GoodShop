@@ -27,7 +27,10 @@ public class SignInOutController {
 		int check = service.signIn(login_id, login_pwd);
 		
 		HttpSession session = request.getSession();
-		if(check != -1) session.setAttribute("memId", login_id);
+		if(check != -1){
+			session.setAttribute("memId", login_id);
+			session.setAttribute("memName", service.getMember(login_id).getName());
+		}
 		session.setAttribute("check", check);
 		
 		return "redirect:"+request.getHeader("referer");

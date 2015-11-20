@@ -1,5 +1,0 @@
-<c:set var="bodyback_c" value="#E0FFFF" />
-<c:set var="back_c" value="#8FBC8F" />
-<c:set var="title_c" value="#5F9EA0" />
-<c:set var="value_c" value="#B0E0E6" />
-<c:set var="bar" value="#778899" />

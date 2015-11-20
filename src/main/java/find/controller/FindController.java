@@ -4,27 +4,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import goodshoplist.model.list;
 import goodshoplist.model.rfcOpenApi;
 import find.service.FindService;
@@ -46,6 +34,7 @@ public class FindController {
 		List<list> result = new ArrayList<list>();
 		try {
 			String id = (String)session.getAttribute("memId");
+			if(id == null) return "redirect:main.do";
 			List<String> dataSidList = service.selectsid(id);//id 값으로 datasid값 list로 받아		
 			jc = JAXBContext.newInstance(rfcOpenApi.class);
 			unmrsllr = jc.createUnmarshaller();
@@ -62,5 +51,15 @@ public class FindController {
 		model.addAttribute("list", result);
 
 		return "find";
+	}
+	
+	@RequestMapping("findToggle.do")
+	@ResponseBody
+	public String toggleFind(String dataSid, String id, String mode){
+		int res = 0;
+		if(mode.equals("on")) res = service.insertFind(dataSid, id);
+		else if(mode.equals("off")) res = service.deleteFind(dataSid, id);
+		
+		return ""+res;
 	}
 }

@@ -1,18 +1,24 @@
 package find.model;
 
 public class FindCommand {
-	private String datasid;
+	private String dataSid;
 	private String id;
-	public String getDatasid() {
-		return datasid;
+	
+	public String getDataSid() {
+		return dataSid;
 	}
-	public void setDatasid(String datasid) {
-		this.datasid = datasid;
+	public void setDataSid(String dataSid) {
+		this.dataSid = dataSid;
 	}
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public FindCommand(String dataSid, String id) {
+		this.dataSid = dataSid;
 		this.id = id;
 	}
 }
