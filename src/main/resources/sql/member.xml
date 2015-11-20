@@ -3,26 +3,36 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-    
-<select id="selectMember" resultType="member.model.MemberCommand">
-    SELECT * FROM MEMBER WHERE ID=#{id}
-</select>
 
-<insert id="signUpMember" parameterType="member.model.MemberCommand">
-    INSERT INTO MEMBER VALUES(#{id}, #{email}, #{pwd}, #{name}, 0, SYSDATE)
-</insert>
+	<select id="selectMember" resultType="member.model.MemberCommand">
+		SELECT * FROM MEMBER WHERE ID=#{id}
+	</select>
 
-<select id="checkId" resultType="java.lang.Integer">
-    SELECT COUNT(ID) FROM MEMBER WHERE ID=#{id}
-</select>
-<select id="checkEmail" resultType="java.lang.Integer">
-    SELECT COUNT(EMAIL) FROM MEMBER WHERE EMAIL=#{email}
-</select>
-<select id="checkName" resultType="java.lang.Integer">
-    SELECT COUNT(NAME) FROM MEMBER WHERE NAME=#{name}
-</select>
+	<insert id="signUpMember" parameterType="member.model.MemberCommand">
+		INSERT INTO MEMBER VALUES(#{id}, #{email}, #{pwd}, #{name}, 0, SYSDATE)
+	</insert>
 
-<update id="updateMember" parameterType="member.model.MemberCommand">
-    UPDATE MEMBER SET NAME=#{name}, EMAIL=#{email}, PWD=#{pwd} WHERE ID=#{id}
-</update>
+	<select id="checkId" resultType="java.lang.Integer">
+		SELECT COUNT(ID) FROM MEMBER WHERE ID=#{id}
+	</select>
+	
+	<select id="checkEmail" resultType="java.lang.Integer">
+		SELECT COUNT(EMAIL) FROM MEMBER WHERE EMAIL=#{email}
+	</select>
+	
+	<select id="checkName" resultType="java.lang.Integer">
+		SELECT COUNT(NAME) FROM MEMBER WHERE NAME=#{name}
+	</select>
+	
+	<select id="findId" resultType="member.model.MemberCommand">
+	    SELECT ID FROM MEMBER WHERE EMAIL=#{email}
+	</select>
+	
+	<select id="findPwd" resultType="member.model.MemberCommand">
+	    SELECT PWD FROM MEMBER WHERE ID=#{id} AND EMAIL=#{email}
+	</select>
+
+	<update id="updateMember" parameterType="member.model.MemberCommand">
+		UPDATE MEMBER SET NAME=#{name}, EMAIL=#{email}, PWD=#{pwd} WHERE ID=#{id}
+	</update>
 </mapper>
