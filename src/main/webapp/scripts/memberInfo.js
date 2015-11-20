@@ -175,3 +175,14 @@ function checkInfoPwdSubmit(){
 	if($(".pwdchk_error").length == 0 && $(".pwd_error").length == 0) return confirm("수정하시겠습니까?");
 	else return false;
 }
+
+$(document).ready(function(){
+	$(".btn").click(function(){
+		$(this).hide();
+		$(this).siblings(".value_div").show();
+	});
+	$(".cancel").click(function(){
+		$(this).parent().hide();
+		$(this).parent().siblings(".btn").show();
+	});
+});

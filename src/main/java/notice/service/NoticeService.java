@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,16 +19,18 @@ public class NoticeService {
 		this.session = session;
 	}
 	
-	public int getArticleCount(){
+	public int getNoticeCount(){
 		int count = session.selectOne("notice.count");
+		
 		return count;
 	}
 	
-	public List<NoticeCommand> getArticleList(int start, int end){
+	public List<NoticeCommand> getNoticeList(int start, int end){
 		Map<String, Integer> bound = new HashMap<String, Integer>();
 		bound.put("startRow", start);
 		bound.put("endRow", end);
 		List<NoticeCommand> list = session.selectList("notice.list", bound);
+		
 		return list;
 	}
 	
@@ -44,7 +44,7 @@ public class NoticeService {
 //		return article;
 //	}
 	
-	public int insert(NoticeCommand command, HttpServletRequest request){
+	public int insert(NoticeCommand notice){
 		int num = 0;
 		try{
 			num = session.selectOne("notice.selectNum");
@@ -52,9 +52,9 @@ public class NoticeService {
 		}finally{
 			num++;
 		}
-		command.setNum(num);
-		command.setIp(request.getRemoteAddr());
-		int x = session.insert("notice.insert", command);
+		notice.setNum(num);
+		int x = session.insert("notice.insert", notice);
+		
 		return x;
 	}
 	

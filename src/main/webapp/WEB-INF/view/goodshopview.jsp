@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.find{
+	position: relative;
+}
+.find12{
+	width: 50px;
+	height: 50px;
+	top: -60px;
+	left: 30px;
+	position: absolute;
+	cursor: pointer;
+}
+</style>
 
 <h3 align=center>${result.dataTitle}</h3>
 <table width="900" align="center">
@@ -40,11 +53,92 @@
 					<th>상세정보</th>
 					<td>${result.dataContent}</td>
 				</tr>
-			</table>
+			</table>			
+			
+			<div class="find">
+			<img class="find12" id="find1" src="/GoodShop/images/find/find1.png" style="display:none;">
+			<img class="find12" id="find2" src="/GoodShop/images/find/find2.png" style="display:none;">
+			</div>
+			
+			<c:forEach var="sid" items="${dataSidList}">
+				<c:if test="${sid ==  result.dataSid}">
+					<c:set var="sidcheck" value="true"/>
+				</c:if>
+			</c:forEach>
+			
+			<script>
+			$(document).ready(function(){
+				
+				var sidChk = "<c:out value="${sidcheck}"/>";
+				if(sidChk) $("#find1").show();
+				else if("${sessionScope.memId}" != "") $("#find2").show();
+				
+				$("#find1").click(function(){
+					var find_dataSid = "<c:out value="${result.dataSid}"/>";
+					var find_id = "<c:out value="${sessionScope.memId}"/>";
+					var mode = "off";
+					
+					var xhf = new XMLHttpRequest();
+					xhf.onreadystatechange = function(){
+						if(xhf.readyState == 4 && xhf.status == 200){
+							var res = xhf.responseText;
+							if(res > 0){
+								$("#find1").fadeOut();
+								$("#find2").fadeIn();
+							}
+						}
+					};
+					xhf.open("GET", "findToggle.do?dataSid="+find_dataSid+"&id="+find_id+"&mode="+mode, true);
+					xhf.send();
+				});
+				
+				$("#find2").click(function(){
+					var find_dataSid = "<c:out value="${result.dataSid}"/>";
+					var find_id = "<c:out value="${sessionScope.memId}"/>";
+					var mode = "on";
+					
+					var xhf = new XMLHttpRequest();
+					xhf.onreadystatechange = function(){
+						if(xhf.readyState == 4 && xhf.status == 200){
+							var res = xhf.responseText;
+							if(res > 0){
+								$("#find2").fadeOut();
+								$("#find1").fadeIn();
+							}
+						}
+					};
+					xhf.open("GET", "findToggle.do?dataSid="+find_dataSid+"&id="+find_id+"&mode="+mode, true);
+					xhf.send();
+				});
+			});
+			</script>
+
+			<%-- <c:choose>
+				<c:when test="${sidcheck == true }">
+					<img id="find1" src="/GoodShop/images/find/find1.png">
+				</c:when>
+				<c:otherwise>
+					<img id="find2" src="/GoodShop/images/find/find2.png">
+				</c:otherwise>
+			</c:choose> --%>
+			
+			
+			<%-- <c:forEach var="sid" items="${dataSidList}">
+				<c:choose>
+					<c:when test="${sid == result.dataSid}">
+						<c:set var="src" value="/GoodShop/images/find/find1.png" />
+					</c:when>
+					<c:otherwise>
+						<c:set var="src" value="/GoodShop/images/find/find2.png" />
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>			
+			<img src="${src}" alt="select"> --%>
 		</td>
 	</tr>
 </table>
-
+<td width=30%>
+</td>
 <div id="shopMap"
 	style="width: 600px; border: 1px solid black; height: 400px; margin: 20px auto; display: block;"></div>
 
