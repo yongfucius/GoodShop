@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,7 +21,14 @@ public class NoticeListController {
 	public void setService(NoticeService service) {
 		this.service = service;
 	}
-
+	
+	@ModelAttribute("important")
+	public List<NoticeCommand> makeImportant(){
+		List<NoticeCommand> important = service.getImportant();
+		
+		return important;
+	}
+	
 	@RequestMapping("noticelist.do")
 	public String list(@RequestParam(defaultValue = "1") int pageNum, Model model){
 		int pageSize = 5;

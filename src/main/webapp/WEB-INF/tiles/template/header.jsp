@@ -109,6 +109,8 @@ $(document).ready(check);
 		</c:choose>
 		</div>
 		<button onclick="location.href='signUp.do'" style="margin-top:3px">회원가입</button>
+		<button onclick="location.href='lostId.do'" style="margin-top:3px">아이디 찾기</button>
+		<button onclick="location.href='lostPwd.do'" style="margin-top:3px">비밀번호 찾기</button>
 	</div>
 	
 	<tiles:importAttribute name="menuList" />

@@ -18,7 +18,7 @@
 </style>
 <div class="find">
 	<c:forEach items="${list}" var="find">
-		<a href="/GoodShop/goodshopview.do?dataSid=${find.dataSid}"><img src="/GoodShop/images/photos/${find.dataSid}/${find.dataSid}_01.png">
+		<a href="/GoodShop/goodshopview.do?dataSid=${find.dataSid}"><img src="/GoodShop/images/photos/${find.dataSid}/${find.dataSid}_01.png"></a>
 		<div class="desc">
 			${find.dataTitle}<br>
 			${find.appnPrdlstPc}<br>
