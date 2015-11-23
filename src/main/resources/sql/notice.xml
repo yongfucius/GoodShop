@@ -3,28 +3,63 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="notice">
-<select id="count" resultType="java.lang.Integer">SELECT COUNT(*) FROM NOTICE</select>
-
-<select id="list" resultType="notice.model.NoticeCommand">
-SELECT NUM, SUBJECT, CONTENT, REGDATE, READCOUNT, WRITER, IP, ID, ROWNUM 
-FROM NOTICE WHERE ROWNUM&gt;=#{startRow} AND ROWNUM&lt;=#{endRow} ORDER BY NUM DESC
+<select id="count" resultType="java.lang.Integer">
+    SELECT COUNT(*) 
+    FROM NOTICE 
+    WHERE CATEGORY&lt;&gt;'공지'
 </select>
 
-<update id="readcountUp">UPDATE NOTICE SET READCOUNT=READCOUNT+1 WHERE NUM=#{id}</update>
-<select id="select" resultType="notice.model.NoticeCommand">SELECT * FROM NOTICE WHERE NUM=#{id}</select>
+<select id="important" resultType="notice.model.NoticeCommand">
+	SELECT NUM, SUBJECT, CONTENT, TO_CHAR(REGDATE, 'YYYY-MM-DD DAY PM HH:MI:SS') REGDATE, READCOUNT, WRITER, IP, ID, CATEGORY, ROWNUM  
+	FROM NOTICE 
+	WHERE CATEGORY='공지' 
+	ORDER BY NUM DESC
+</select>
 
-<select id="selectNum" resultType="java.lang.Integer">SELECT MAX(NUM) FROM NOTICE</select>
+<select id="list" resultType="notice.model.NoticeCommand">
+    SELECT NUM, SUBJECT, CONTENT, REGDATE, READCOUNT, WRITER, IP, ID, CATEGORY, RNUM
+    FROM (
+	SELECT NUM, SUBJECT, CONTENT, REGDATE, READCOUNT, WRITER, IP, ID, CATEGORY, ROWNUM RNUM
+	FROM (
+	SELECT NUM, SUBJECT, CONTENT, TO_CHAR(REGDATE, 'YYYY-MM-DD DAY PM HH:MI:SS') REGDATE, READCOUNT, WRITER, IP, ID, CATEGORY
+	FROM NOTICE
+	WHERE CATEGORY&lt;&gt;'공지'
+	ORDER BY NUM DESC
+	)
+	)
+	WHERE RNUM&gt;=#{startRow} AND RNUM&lt;=#{endRow} 
+</select>
+
+<update id="readcountUp">
+    UPDATE NOTICE 
+    SET READCOUNT=READCOUNT+1 
+    WHERE NUM=#{id}
+</update>
+<select id="select" resultType="notice.model.NoticeCommand">
+    SELECT NUM, SUBJECT, CONTENT, TO_CHAR(REGDATE, 'YYYY-MM-DD DAY PM HH:MI:SS') REGDATE, READCOUNT, WRITER, IP, ID, CATEGORY  
+    FROM NOTICE 
+    WHERE NUM=#{id}
+</select>
+
+<select id="selectNum" resultType="java.lang.Integer">
+    SELECT MAX(NUM) 
+    FROM NOTICE
+</select>
 <insert id="insert" parameterType="notice.model.NoticeCommand">
-INSERT INTO NOTICE(NUM, SUBJECT, CONTENT, REGDATE, READCOUNT, WRITER, IP, ID) 
-VALUES(#{num},#{subject},#{content},SYSDATE,0,#{writer},#{ip}, #{id})
+	INSERT INTO NOTICE(NUM, SUBJECT, CONTENT, REGDATE, READCOUNT, WRITER, IP, ID, CATEGORY) 
+	VALUES(#{num},#{subject},#{content},SYSDATE,0,#{writer},#{ip}, #{id}, #{category})
 </insert>
 
-<select id="selectPasswd" resultType="java.lang.String">SELECT PASSWD FROM NOTICE WHERE NUM=#{num}</select>
-<delete id="delete">DELETE FROM NOTICE WHERE NUM=#{num}</delete>
+<delete id="delete">
+    DELETE 
+    FROM NOTICE  
+    WHERE NUM=#{num}
+</delete>
 
 <update id="update" parameterType="notice.model.NoticeCommand">
-UPDATE NOTICE 
-SET WRITER=#{writer}, EMAIL=#{email}, SUBJECT=#{subject}, PASSWD=#{passwd}, CONTENT=#{content} 
-WHERE NUM=#{num}
+	UPDATE NOTICE 
+	SET SUBJECT=#{subject}, CONTENT=#{content}, CATEGORY=#{category} 
+	WHERE NUM=#{num}
 </update>
+
 </mapper>
