@@ -35,6 +35,16 @@
 .menu img{
 	width: 160px;
 }
+
+.menu img:hover{
+	width: 145px;
+	border-style: inset;
+	border-color: #5587ED;
+	border-width: 3px;
+	outline-style: groove;
+	outline-color:#4375DB;
+}
+
 </style>
 <script>
 function space(){
