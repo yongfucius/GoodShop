@@ -2,6 +2,7 @@ package goodshopview.controller;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -47,10 +48,7 @@ public class GoodShopViewController {
 		list result = list.get(0);
 		model.addAttribute("result", result);
 		model.addAttribute("dataSidList",dataSidList);
-		System.out.println(dataSidList);
-		
 		return "goodshopview";
 	}
-	
 
 }

@@ -177,11 +177,26 @@
 	var oMarker1 = new nhn.api.map.Marker(oIcon, {
 		title : '${result.dataTitle}' }); // dataTitle
 	
+		
+		
 	oMarker1.setPoint(oPoint);
 	oMap.addOverlay(oMarker1);
 	var oLabel1 = new nhn.api.map.MarkerLabel();
 	oMap.addOverlay(oLabel1);
 	oLabel1.setVisible(true, oMarker1);
+	
+	var oMarker = [];
+	var oPoint = [];
+	for(var i=0; i< <c:out value="${end}"/>; i++) {
+	   oPorint[i] = ['<c:out value="${list[i].posy}"/>', '<c:out value="${list[i].posx}"/>'];
+	   oMarker[i] = new nhn.api.map.Marker(oIcon, {
+		   title : '${list[i].dataTitle}' });
+	   oMarker[i].setPoint(oPorint[i]);
+	    
+	   oMap.addOverlay(oMarker[i]);
+	   oLabel.setVisible(true, oMarker[i]);
+	} 
+    
 
 	mapTypeChangeButton = new nhn.api.map.MapTypeBtn();
 	mapTypeChangeButton.setPosition({bottom:40, right:40});
