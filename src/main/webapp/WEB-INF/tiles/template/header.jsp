@@ -37,12 +37,13 @@
 }
 
 .menu img:hover{
-	width: 145px;
+	width: 150px;
 	border-style: inset;
 	border-color: #5587ED;
-	border-width: 3px;
-	outline-style: groove;
+	border-width: 5px;
+	outline-style: solid;
 	outline-color:#4375DB;
+	outline-width: 1px;
 }
 
 </style>
