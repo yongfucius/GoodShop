@@ -5,8 +5,12 @@
 	width: 700px;
 	margin: auto;
 }
-.goodshoplist img{
+.goodshoplist .photo{
 	width: 230px;
+	height: 130px;
+	position: relative;
+}
+.goodshoplist .photo img{
 	height: 130px;
 }
 .goodshoplist .desc{
@@ -18,7 +22,11 @@
 </style>
 <div class="goodshoplist">
 	<c:forEach items="${list}" var="goodshop">
-		<a href="/GoodShop/goodshopview.do?dataSid=${goodshop.dataSid}"><img src="/GoodShop/images/photos/${goodshop.dataSid}/${goodshop.dataSid}_01.png"></a>
+		<div class="photo">
+			<a href="/GoodShop/goodshopview.do?dataSid=${goodshop.dataSid}">
+			<img src="/GoodShop/images/photos/${goodshop.dataSid}/${goodshop.dataSid}_01.png">
+			</a>
+		</div>
 		<div class="desc">
 			${goodshop.dataTitle}<br>
 			${goodshop.appnPrdlstPc}<br>

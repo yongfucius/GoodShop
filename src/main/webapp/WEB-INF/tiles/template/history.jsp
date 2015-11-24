@@ -26,6 +26,10 @@
 	position: relative;
 	height: 80px;
 }
+.history_item img{
+	margin: auto;
+}
+
 .history_content{
 	position: absolute;
 	width: 300px;

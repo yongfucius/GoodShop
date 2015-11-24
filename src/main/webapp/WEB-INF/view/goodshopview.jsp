@@ -1,7 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" type="text/css" href="scripts/slick/core/slick.css"/>
+<link rel="stylesheet" type="text/css" href="scripts/slick/core/slick-theme.css"/>
+<script type="text/javascript" src="scripts/slick/core/slick.min.js"></script>
 <style>
+.goodshopview{
+	width: 800px;
+	margin: auto;
+}
+
 .find{
 	position: relative;
 }
@@ -13,15 +20,77 @@
 	position: absolute;
 	cursor: pointer;
 }
-</style>
 
+.slick_container{
+	position: absolute;
+	width: 200px;
+}
+</style>
+<script>
+$(document).ready(function(){
+	
+	var sidChk = "<c:out value="${sidcheck}"/>";
+	if(sidChk) $("#find1").show();
+	else if("${sessionScope.memId}" != "") $("#find2").show();
+	
+	$("#find1").click(function(){
+		var find_dataSid = "<c:out value="${result.dataSid}"/>";
+		var find_id = "<c:out value="${sessionScope.memId}"/>";
+		var mode = "off";
+		
+		var xhf = new XMLHttpRequest();
+		xhf.onreadystatechange = function(){
+			if(xhf.readyState == 4 && xhf.status == 200){
+				var res = xhf.responseText;
+				if(res > 0){
+					$("#find1").fadeOut();
+					$("#find2").fadeIn();
+				}
+			}
+		};
+		xhf.open("GET", "findToggle.do?dataSid="+find_dataSid+"&id="+find_id+"&mode="+mode, true);
+		xhf.send();
+	});
+	
+	$("#find2").click(function(){
+		var find_dataSid = "<c:out value="${result.dataSid}"/>";
+		var find_id = "<c:out value="${sessionScope.memId}"/>";
+		var mode = "on";
+		
+		var xhf = new XMLHttpRequest();
+		xhf.onreadystatechange = function(){
+			if(xhf.readyState == 4 && xhf.status == 200){
+				var res = xhf.responseText;
+				if(res > 0){
+					$("#find2").fadeOut();
+					$("#find1").fadeIn();
+				}
+			}
+		};
+		xhf.open("GET", "findToggle.do?dataSid="+find_dataSid+"&id="+find_id+"&mode="+mode, true);
+		xhf.send();
+	});
+});
+</script>
 <h3 align=center>${result.dataTitle}</h3>
+
+<!-- 업소 사진 -->
+<div class="goodshopview">
+<div class="goodshopphotos_container">
+	<button class="prev-button">Prev</button>
+	<div class="goodshopphotos">
+		<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_01.png" alt="${result.dataTitle}" onerror="this.style.display='none'">
+		<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_02.png" alt="${result.dataTitle}" onerror="this.style.display='none'">
+		<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_03.png" alt="${result.dataTitle}" onerror="this.style.display='none'">
+		<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_04.png" alt="${result.dataTitle}" onerror="this.style.display='none'">
+	</div>
+	<button class="next-button">Next</button>
+</div>
+
 <table width="900" align="center">
 	<tr height="50">
 		<td width=30%>
-			<!-- 업소 사진 -->
-			<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_01.png"
-			alt="${result.dataTitle}">
+			
 		</td>
 		<td width=70%>
 			<table border="1" cellpadding="3">
@@ -66,74 +135,6 @@
 				</c:if>
 			</c:forEach>
 			
-			<script>
-			$(document).ready(function(){
-				
-				var sidChk = "<c:out value="${sidcheck}"/>";
-				if(sidChk) $("#find1").show();
-				else if("${sessionScope.memId}" != "") $("#find2").show();
-				
-				$("#find1").click(function(){
-					var find_dataSid = "<c:out value="${result.dataSid}"/>";
-					var find_id = "<c:out value="${sessionScope.memId}"/>";
-					var mode = "off";
-					
-					var xhf = new XMLHttpRequest();
-					xhf.onreadystatechange = function(){
-						if(xhf.readyState == 4 && xhf.status == 200){
-							var res = xhf.responseText;
-							if(res > 0){
-								$("#find1").fadeOut();
-								$("#find2").fadeIn();
-							}
-						}
-					};
-					xhf.open("GET", "findToggle.do?dataSid="+find_dataSid+"&id="+find_id+"&mode="+mode, true);
-					xhf.send();
-				});
-				
-				$("#find2").click(function(){
-					var find_dataSid = "<c:out value="${result.dataSid}"/>";
-					var find_id = "<c:out value="${sessionScope.memId}"/>";
-					var mode = "on";
-					
-					var xhf = new XMLHttpRequest();
-					xhf.onreadystatechange = function(){
-						if(xhf.readyState == 4 && xhf.status == 200){
-							var res = xhf.responseText;
-							if(res > 0){
-								$("#find2").fadeOut();
-								$("#find1").fadeIn();
-							}
-						}
-					};
-					xhf.open("GET", "findToggle.do?dataSid="+find_dataSid+"&id="+find_id+"&mode="+mode, true);
-					xhf.send();
-				});
-			});
-			</script>
-
-			<%-- <c:choose>
-				<c:when test="${sidcheck == true }">
-					<img id="find1" src="/GoodShop/images/find/find1.png">
-				</c:when>
-				<c:otherwise>
-					<img id="find2" src="/GoodShop/images/find/find2.png">
-				</c:otherwise>
-			</c:choose> --%>
-			
-			
-			<%-- <c:forEach var="sid" items="${dataSidList}">
-				<c:choose>
-					<c:when test="${sid == result.dataSid}">
-						<c:set var="src" value="/GoodShop/images/find/find1.png" />
-					</c:when>
-					<c:otherwise>
-						<c:set var="src" value="/GoodShop/images/find/find2.png" />
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>			
-			<img src="${src}" alt="select"> --%>
 		</td>
 	</tr>
 </table>
@@ -202,3 +203,4 @@
 	mapTypeChangeButton.setPosition({bottom:40, right:40});
 	oMap.addControl(mapTypeChangeButton);
 </script>
+</div>

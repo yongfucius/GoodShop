@@ -8,14 +8,20 @@
 td, tr{
 	border: 1px solid black;
 	position: relative;
+	padding: 5px;
 }
 
 .kind{
 	width: 200px;
 	height: 140px;
-	background-color: #D5D5D5;
 	text-align: center;
-	
+}
+
+.table tr td:first-child{
+	background-color: #D5D5D5;
+}
+.pwd_table tr td:first-child{
+	background-color: white;
 }
 
 .value{
@@ -83,33 +89,43 @@ $(document).ready(function(){
 	<td><div class="kind"><br><b>비밀번호</b></div></td>
 	<td>
 		<div class="value_div" id="pwd_div" style="display:none;">
-		<form method="post" onsubmit="return checkInfoPwdSubmit();">
-			<table class="pwd_table">
-			<tr>
-				<td>현재 비밀번호</td>
-				<td><input type="password" id="info_curr_pwd" name="curr_pwd" size="16" maxlength="20" ></td>
-				<td><label id="info_curr_pwd_msg">현재 비밀번호를 입력해주세요. </label></td>
-			</tr>
-			<tr>
-				<td>새 비밀번호</td>
-				<td><input type="password" id="info_pwd" name="pwd" size="16" maxlength="20" onkeypress="checkCapsLock(event, 'info_pwd', 'info_pwd_msg');" onblur="checkInfoPwd();"></td>
-				<td><label id="info_pwd_msg">바꿀 새 비밀번호를 입력해주세요. </label></td>
-			</tr>
-			<tr>
-				<td>새 비밀번호 확인</td>
-				<td><input type="password" id="info_pwdchk" name="pwdchk" size="16" maxlength="20" onkeypress="checkCapsLock(event, 'info_pwdchk', 'info_pwdchk_msg');" onblur="checkInfoPwdChk();" ></td>
-				<td><label id="info_pwdchk_msg"></label></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="확인"></td>
-				<td><input type="hidden" value="true" name="passwordcheck"></td>
-				<td></td>
-			</tr>
-			</table>
-		</form>
-		<button class="cancel">취소</button>
+			<form method="post" onsubmit="return checkInfoPwdSubmit();">
+				<table class="pwd_table">
+				<tr>
+					<td>현재 비밀번호</td>
+					<td><input type="password" id="info_curr_pwd" name="curr_pwd" size="16" maxlength="20" ></td>
+					<td><label id="info_curr_pwd_msg">현재 비밀번호를 입력해주세요. </label></td>
+				</tr>
+				<tr>
+					<td>새 비밀번호</td>
+					<td><input type="password" id="info_pwd" name="pwd" size="16" maxlength="20" onkeypress="checkCapsLock(event, 'info_pwd', 'info_pwd_msg');" onblur="checkInfoPwd();"></td>
+					<td><label id="info_pwd_msg">바꿀 새 비밀번호를 입력해주세요. </label></td>
+				</tr>
+				<tr>
+					<td>새 비밀번호 확인</td>
+					<td><input type="password" id="info_pwdchk" name="pwdchk" size="16" maxlength="20" onkeypress="checkCapsLock(event, 'info_pwdchk', 'info_pwdchk_msg');" onblur="checkInfoPwdChk();" ></td>
+					<td><label id="info_pwdchk_msg"></label></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="확인"></td>
+					<td><input type="hidden" value="true" name="passwordcheck"></td>
+					<td></td>
+				</tr>
+				</table>
+			</form>
+			<button class="cancel">취소</button>
 		</div>
 		<button class="btn">수정</button>
+	</td>
+</tr>
+<tr>
+	<td><div class="kind"><br><b>회원 탈퇴</b></div></td>
+	<td>
+		<div class="value_div" id="break_div" style="display:none;">
+			탈퇴하시겠습니까? <button onclick="location.href='breakMember.do'">탈퇴</button><br>
+			<button class="cancel">취소</button>
+		</div>
+		<button class="btn">탈퇴</button>
 	</td>
 </tr>
 </table>
