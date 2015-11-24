@@ -13,66 +13,68 @@ import notice.model.NoticeCommand;
 @Component
 public class NoticeService {
 	@Autowired
-	private SqlSession session;
+	private SqlSession sql;
 
 	public void setSqlSession(SqlSession session) {
-		this.session = session;
+		this.sql = session;
 	}
 	
 	public int getNoticeCount(){
-		int count = session.selectOne("notice.count");
+		int count = sql.selectOne("notice.count");
 		
 		return count;
 	}
 	
-	public List<NoticeCommand> getNoticeList(int start, int end){
+	public List<NoticeCommand> getImportant(){
+		List<NoticeCommand> important = sql.selectList("notice.important");
+		
+		return important;
+	}
+	
+	public List<NoticeCommand> getNoticeList(int startRow, int endRow){
 		Map<String, Integer> bound = new HashMap<String, Integer>();
-		bound.put("startRow", start);
-		bound.put("endRow", end);
-		List<NoticeCommand> list = session.selectList("notice.list", bound);
+		bound.put("startRow", startRow);
+		bound.put("endRow", endRow);
+		List<NoticeCommand> list = sql.selectList("notice.list", bound);
 		
 		return list;
 	}
 	
-//	public int updateReadcount(int num){
-//		int x = session.update("board.readcountUp", num);
-//		return x;
-//	}
-//	
-//	public NoticeCommand getArticle(int num){
-//		NoticeCommand article = session.selectOne("board.select", num);
-//		return article;
-//	}
+	public int updateReadcount(int num){
+		int x = sql.update("notice.readcountUp", num);
+		
+		return x;
+	}
+	
+	public NoticeCommand getNotice(int num){
+		NoticeCommand notice = sql.selectOne("notice.select", num);
+		
+		return notice;
+	}
 	
 	public int insert(NoticeCommand notice){
 		int num = 0;
 		try{
-			num = session.selectOne("notice.selectNum");
+			num = sql.selectOne("notice.selectNum");
 		}catch(NullPointerException e){
 		}finally{
 			num++;
 		}
 		notice.setNum(num);
-		int x = session.insert("notice.insert", notice);
+		int x = sql.insert("notice.insert", notice);
 		
 		return x;
 	}
 	
-//	public int delete(int num, String passwd){
-//		int x = -1;
-//		String dbPasswd = "";
-//		try {
-//			dbPasswd = session.selectOne("board.selectPasswd", num);
-//		} catch (NullPointerException e) {
-//			return x;
-//		}
-//		if(dbPasswd.equals(passwd)) x = session.delete("board.delete", num);
-//		else x = 0;
-//		return x;
-//	}
-//	
-//	public int update(NoticeCommand command){
-//		int x = session.update("board.update", command);
-//		return x;
-//	}
+	public int delete(int num){
+		int x = sql.delete("notice.delete", num);
+		
+		return x;
+	}
+	
+	public int update(NoticeCommand notice){
+		int x = sql.update("notice.update", notice);
+		
+		return x;
+	}
 }

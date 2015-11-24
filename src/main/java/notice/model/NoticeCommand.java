@@ -1,16 +1,15 @@
 package notice.model;
 
-import java.util.Date;
-
 public class NoticeCommand {
 	private int num;
 	private String subject;
 	private String content;
-	private Date regdate;
+	private String regdate;
 	private int readcount;
 	private String writer;
 	private String ip;
 	private String id;
+	private String category;
 	
 	public int getNum() {
 		return num;
@@ -30,10 +29,10 @@ public class NoticeCommand {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Date regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 	public int getReadcount() {
@@ -59,6 +58,12 @@ public class NoticeCommand {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	
 }

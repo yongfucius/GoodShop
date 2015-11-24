@@ -59,10 +59,14 @@ public class GoodShopViewController {
 		for (list dto : list2) {
 			if(find(induty, dto.getInduty())) result2.add(dto);
 		}
+		
 		int end = result2.size();
 		
 		model.addAttribute("list", result2);
 		model.addAttribute("end", end);
+		
+		System.out.println(result2);
+		System.out.println(end);
 		
 		return "goodshopview";
 	}

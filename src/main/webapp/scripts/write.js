@@ -1,9 +1,4 @@
 function writeSave(){
-	if(document.writeform.writer.value == ""){
-		alert("작성자를 입력하세요. ");
-		document.writeform.writer.focus();
-		return false;
-	}
 	if(document.writeform.subject.value == ""){
 		alert("제목를 입력하세요. ");
 		document.writeform.subject.focus();
@@ -14,9 +9,8 @@ function writeSave(){
 		document.writeform.content.focus();
 		return false;
 	}
-	if(document.writeform.passwd.value == ""){
-		alert("비밀번호를 입력하세요. ");
-		document.writeform.passwd.focus();
+	if(document.writeform.category.value == ""){
+		alert("분류를 선택하세요");
 		return false;
 	}
 }
