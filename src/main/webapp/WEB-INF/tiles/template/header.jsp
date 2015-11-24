@@ -38,7 +38,7 @@
 
 .menu img:hover{
 	width: 150px;
-	border-style: inset;
+	border-style: outset;
 	border-color: #5587ED;
 	border-width: 5px;
 	outline-style: solid;
