@@ -13,6 +13,7 @@ import javax.xml.bind.Unmarshaller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import goodshoplist.model.rfcOpenApi;
 import goodshoplist.model.list;
@@ -21,7 +22,8 @@ import goodshoplist.model.list;
 public class GoodShopListController {
 	
 	@RequestMapping("goodshoplist.do")
-	public String list(String[] induty, HttpSession session, Model model) throws MalformedURLException{
+	public String list(String[] induty, @RequestParam(defaultValue="1") int itemlistPage, 
+			HttpSession session, Model model) throws MalformedURLException{
 		rfcOpenApi rfc = (rfcOpenApi) session.getAttribute("all");
 		
 		if(rfc == null){
@@ -50,7 +52,9 @@ public class GoodShopListController {
 		}
 		
 		model.addAttribute("list", result);
-		
+		model.addAttribute("induty", induty);
+		model.addAttribute("itemlistPage", itemlistPage);
+		model.addAttribute("itemCount", result.size());
 		return "goodshoplist";
 	}
 	

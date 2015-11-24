@@ -52,7 +52,7 @@
 }
 
 .page_move{
-	width: 100px;
+	width: 400px;
 	margin: auto;
 	margin-top: 30px;
 	text-align: center;
@@ -120,17 +120,31 @@
 
 <c:if test="${count > 0}">
 	<div class="page_move">
-		<c:set var="pageCount" value="${count/pageSize+(count%pageSize == 0 ? 0 : 1 )}" />
+		<fmt:parseNumber var="pageCount" value="${count/pageSize+(count%pageSize == 0 ? 0 : 1 )}" integerOnly="true"/>
 		<c:set var="pageBlock" value="${5}" />
 		<fmt:parseNumber var="result" value="${(currentPage-1)/pageBlock}" integerOnly="true" />
 		<c:set var="startPage" value="${result*pageBlock+1}" />
 		<c:set var="endPage" value="${startPage+pageBlock-1}" />
 		<c:if test="${endPage > pageCount}"><c:set var="endPage" value="${pageCount}" /></c:if>
-		<c:if test="${startPage > pageBlock}"><a href="list.do?pageNum=${startPage-pageBlock}">이전</a></c:if>
+		
+		<c:if test="${startPage > pageBlock}">
+			<a href="list.do?pageNum=1">처음으로</a>
+			<a href="list.do?pageNum=${startPage-pageBlock}">이전</a>
+		</c:if>
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
-			<a href="noticelist.do?pageNum=${i}">[${i}]</a>
+			<c:choose>
+				<c:when test="${i == currentPage}">
+					<b>[${i}]</b>
+				</c:when>
+				<c:otherwise>
+					<a href="noticelist.do?pageNum=${i}">[${i}]</a>
+				</c:otherwise>
+			</c:choose>
 		</c:forEach>
-		<c:if test="${endPage < pageCount}"><a href="list.do?pageNum=${startPage+pageBlock}">다음</a></c:if>
+		<c:if test="${endPage < pageCount}">
+			<a href="list.do?pageNum=${startPage+pageBlock}">다음</a>
+			<a href="list.do?pageNum=${pageCount}">끝으로</a>
+		</c:if>
 	</div>
 </c:if>
 </div>
