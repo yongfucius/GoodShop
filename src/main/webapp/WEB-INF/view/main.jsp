@@ -2,16 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 .main{
-	width: 700px;
+	width: 850px;
 	margin: auto;
 }
 .main img{
-	width: 230px;
-	height: 130px;
+	width: 850px;
 }
 </style>
 <div class="main">
-	<img src="/GoodShop/images/photos/${id}/${id}_01.png"><br>
-	${title}<br>
-	${contents}
+	<img src="/GoodShop/images/main.png">
 </div>

@@ -3,7 +3,7 @@
 <style>
 .notice_content{
 	width: 600px;
-	margin: auto;
+	margin: 50px auto;
 }
 </style>
 <div class="notice_content">

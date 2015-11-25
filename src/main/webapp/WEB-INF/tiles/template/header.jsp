@@ -6,14 +6,14 @@
 <style>
 .header{
 	width: 1000px;
-	height: 150px;
+	height: 225px;
 	margin: 0px auto;
 	position: relative;
 }
 .title{
 }
 .title img{
-	height: 70px;
+	height: 150px;
 }
 
 .sign{
@@ -31,6 +31,7 @@
 
 .menu{
 	width: 1000px;
+	margin: auto;
 }
 .menu img{
 	width: 160px;
@@ -81,9 +82,6 @@ $(document).ready(check);
 <div class="header">
 	<div class="title">
 		<a href="/GoodShop/"><img src="/GoodShop/images/logo.gif"></a>
-		<a href="http://www.goodprice.go.kr" target="_blank">
-			<img src="/GoodShop/images/logo_gov.jpg" style="height:45px; position:absolute; margin-left:20px; top:10px;">
-		</a>
 	</div>
 	
 	

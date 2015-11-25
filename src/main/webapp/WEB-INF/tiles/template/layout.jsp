@@ -6,16 +6,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><tiles:getAsString name="title" /></title>
 <style>
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
 hr{
 	width: 1005px;
+}
+
+#menu_wrap{
 }
 </style>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 </head>
 <body>
-<tiles:insertAttribute name="header" />
-<hr>
+<div id="menu_wrap">
+	<tiles:insertAttribute name="header" />
+</div>
 <tiles:insertAttribute name="body" />
 <tiles:insertAttribute name="history" />
 <hr>
