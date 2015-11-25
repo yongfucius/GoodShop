@@ -27,6 +27,7 @@ public class MemberInfoController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public String info(HttpSession session, Model model){
+		if(session.getAttribute("memId") == null) return "redirect:main.do";
 		model.addAttribute("member", service.getMember((String) session.getAttribute("memId")));
 		return "memberInfo";
 	}
@@ -56,4 +57,5 @@ public class MemberInfoController {
 		model.addAttribute("complete", true);
 		return "memberInfo";
 	}
+	
 }

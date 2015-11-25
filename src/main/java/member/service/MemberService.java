@@ -61,4 +61,23 @@ public class MemberService {
 		
 		return getMember(id);
 	}
+	
+	public String getIdByEmail(String email){
+		String id = sql.selectOne("member.getIdByEmail", email);
+		
+		return id;
+	}
+
+	public String getPwdById(String id) {
+		String pwd = sql.selectOne("member.getPwdById", id);
+		
+		return pwd;
+	}
+	
+	public int breakMember(String id){
+		int x = sql.delete("member.break", id);
+		if(x == 1) sql.delete("find.deleteid", id);
+		
+		return x;
+	}
 }

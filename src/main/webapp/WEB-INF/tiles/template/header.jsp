@@ -6,14 +6,14 @@
 <style>
 .header{
 	width: 1000px;
-	height: 150px;
+	height: 225px;
 	margin: 0px auto;
 	position: relative;
 }
 .title{
 }
 .title img{
-	height: 70px;
+	height: 150px;
 }
 
 .sign{
@@ -31,6 +31,7 @@
 
 .menu{
 	width: 1000px;
+	margin: auto;
 }
 .menu img{
 	width: 160px;
@@ -92,9 +93,6 @@ $(document).ready(check);
 <div class="header">
 	<div class="title">
 		<a href="/GoodShop/"><img src="/GoodShop/images/logo.gif"></a>
-		<a href="http://www.goodprice.go.kr" target="_blank">
-			<img src="/GoodShop/images/logo_gov.jpg" style="height:45px; position:absolute; margin-left:20px; top:10px;">
-		</a>
 	</div>
 	
 	
@@ -120,6 +118,8 @@ $(document).ready(check);
 		</c:choose>
 		</div>
 		<button onclick="location.href='signUp.do'" style="margin-top:3px">회원가입</button>
+		<button onclick="location.href='lostId.do'" style="margin-top:3px">아이디 찾기</button>
+		<button onclick="location.href='lostPwd.do'" style="margin-top:3px">비밀번호 찾기</button>
 	</div>
 	
 	<tiles:importAttribute name="menuList" />
