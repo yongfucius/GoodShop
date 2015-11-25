@@ -55,6 +55,7 @@
 	text-align: center;
 }
 .move a:link, .move a:visited{
+	color: blue;
 	text-decoration: none;
 }
 </style>
@@ -97,7 +98,7 @@
 		</c:forEach>
 		
 		<c:if test="${startlist > 5}">
-			<a href="goodshoplist.do?itemlistPage=1${moveinduty}">처음으로</a>
+			<a href="goodshoplist.do?itemlistPage=1${moveinduty}">처음으로</a> ...
 			<a href="goodshoplist.do?itemlistPage=${endlist-5}${moveinduty}">이전</a>
 		</c:if>
 		<c:forEach var="i" begin="${startlist}" end="${endlist}" step="1">
@@ -111,7 +112,7 @@
 			</c:choose>
 		</c:forEach>|
 		<c:if test="${endlist < itemlistCount}">
-			<a href="goodshoplist.do?itemlistPage=${startlist+5}${moveinduty}">다음</a>
+			<a href="goodshoplist.do?itemlistPage=${startlist+5}${moveinduty}">다음</a> ...
 			<a href="goodshoplist.do?itemlistPage=${itemlistCount}${moveinduty}">끝으로</a>
 		</c:if>
 	</div>
