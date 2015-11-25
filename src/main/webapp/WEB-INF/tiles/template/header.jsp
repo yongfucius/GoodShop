@@ -87,7 +87,9 @@ $(document).ready(check);
 	</div>
 	
 	
-	<div class="sign">
+
+	
+ 	<div class="sign">
 		<div class="login">
 		<c:choose>
 			<c:when test="${sessionScope.check == 1}">
@@ -99,8 +101,10 @@ $(document).ready(check);
 			<c:otherwise>
 				<label id="login_pwd_msg" style="position:absolute; top:-15px; height:15px; width:200px; right:50px; font-weight:bold; font-size:12px; color:darkorange;"></label>
 				<form name="login" method="post" action="signIn.do" onsubmit="return space();">
-					<label for="login_id" >계정&nbsp;</label><input type="text" id="login_id" name="login_id" size="10" value="${sessionScope.memId}"/>
-					<label for="login_pwd" >비밀번호&nbsp;</label><input type="password" id="login_pwd" name="login_pwd" size="10" onkeypress="checkCapsLock(event);"/>
+					<label for="login_id" >계정&nbsp;</label>
+					<input type="text" id="login_id" name="login_id" size="10" value="${sessionScope.memId}"/>
+					<label for="login_pwd" >비밀번호&nbsp;</label>
+					<input type="password" id="login_pwd" name="login_pwd" size="10" onkeypress="checkCapsLock(event);"/>
 					<input type="submit" value="로그인" />
 				</form>
 				<c:remove var="check" scope="session" />
