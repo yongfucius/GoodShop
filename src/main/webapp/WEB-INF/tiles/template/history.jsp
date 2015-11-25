@@ -6,7 +6,7 @@
     height: 550px;
     position: fixed;
     left: 50%;
-    top: 200px;
+    top: 280px;
     margin-left: 500px;
 }
 .history_label{
@@ -134,6 +134,7 @@ function makeList(){
 			$(".scrollerDown").css("width", "0px");
 			var scrollNum = $(".history_item").length - 5;
 			$(".history_list").css("top", -scrollNum * 80 + "px");
+			$(".history_content").css("top", -scrollNum * 80+65 + "px");
 			break;
 		}
 	}else{
