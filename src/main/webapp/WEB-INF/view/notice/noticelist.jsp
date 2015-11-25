@@ -57,6 +57,10 @@
 	margin-top: 30px;
 	text-align: center;
 }
+.page_move a:link, .page_move a:visited{
+	color: blue;
+	text-decoration: none;
+}
 </style>
 
 <div class="notice">
@@ -129,7 +133,7 @@
 		
 		<c:if test="${startPage > pageBlock}">
 			<a href="list.do?pageNum=1">처음으로</a>
-			<a href="list.do?pageNum=${startPage-pageBlock}">이전</a>
+			<a href="list.do?pageNum=${startPage-pageBlock}">[이전]</a>
 		</c:if>
 		<c:forEach var="i" begin="${startPage}" end="${endPage}">
 			<c:choose>
@@ -142,7 +146,7 @@
 			</c:choose>
 		</c:forEach>
 		<c:if test="${endPage < pageCount}">
-			<a href="list.do?pageNum=${startPage+pageBlock}">다음</a>
+			<a href="list.do?pageNum=${startPage+pageBlock}">[다음]</a>
 			<a href="list.do?pageNum=${pageCount}">끝으로</a>
 		</c:if>
 	</div>
