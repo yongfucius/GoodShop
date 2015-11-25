@@ -6,7 +6,7 @@
 <style>
 .header{
 	width: 1000px;
-	height: 225px;
+	height: 216px;
 	margin: 0px auto;
 	position: relative;
 }
@@ -34,7 +34,8 @@
 	margin: auto;
 }
 .menu img{
-	width: 160px;
+	float: left;
+	width: 166px;
 }
 </style>
 <script>
@@ -117,4 +118,15 @@ $(document).ready(check);
 			<a href="${menu}"><img src="/GoodShop/images/menu/${status.count}.png"></a>
 		</c:forEach>
 	</div>
+	<script>
+	$(document).ready(function(){
+		$(".menu img").hover(function(){
+			var statcnt = $(this).parent().prevAll().length+1;
+			$(this).prop("src", "/GoodShop/images/menu/hov"+statcnt+".png");
+		}, function(){
+			var statcnt = $(this).parent().prevAll().length+1;
+			$(this).prop("src", "/GoodShop/images/menu/"+statcnt+".png");
+		});
+	});
+	</script>
 </div>
