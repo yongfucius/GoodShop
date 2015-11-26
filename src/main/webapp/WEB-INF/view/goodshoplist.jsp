@@ -4,19 +4,26 @@
 <style>
 .goodshoplist{
 	width: 800px;
-	margin: 50px auto;
+	margin: 60px auto;
 }
 
+#foodtab_wrap{
+	position: absolute;
+	top: 216px;
+	width: 100%;
+	height: 50px;
+	margin: 0px;
+	background: transparent url("/GoodShop/images/foodtab/bg_tab.png") repeat-x;
+}
 #foodtab{
 	list-style-type: none;
+	height: 50px;
 	position: absolute;
 	right: 50%;
-	margin-right: 500px; 
 }
-#foodtab li img{
-	width: 120px;
-	height: 80px;
-	margin-top: 15px;
+#foodtab img{
+	float: left;
+	height: 50px;
 	cursor: pointer;
 }
 
@@ -24,10 +31,12 @@
 	width: 800px;
 	position: relative;
 	margin-top: 30px;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
 }
 
 .photo{
-	width: 250px;
+	width: 230px;
 	height: 130px;
 }
 .photo img{
@@ -36,20 +45,46 @@
 }
 
 .desc{
-	width: 300px;
+	width: 310px;
 	position: absolute;
-	top: 20px;
-	left: 250px;
+	top: 0px;
+	left: 230px;
 }
+.desc ul{
+	list-style-type: none;
+}
+.desc ul li:nth-child(1){
+	font-weight: bold;
+	font-size: 120%;
+}
+.desc ul li:nth-child(1) a:link, .desc ul li:nth-child(1) a:visited{
+	color: black;
+	text-decoration: none;
+}
+.desc ul li:nth-child(1) a:hover{
+	text-decoration: underline;
+}
+.desc ul li:nth-child(2){
+	margin-top: 15px;
+	font-size: 12px;
+}
+.desc ul li:nth-child(3){
+	color: gray;
+	font-size: 12px;
+}
+.desc ul li:nth-child(4){
+	margin-top: 5px;
+}
+
 .induty{
-	width: 250px;
+	width: 260px;
 	position: absolute;
 	top: 40px;
-	left: 550px;
+	left: 540px;
 }
 
 .move{
-	width: 400px;
+	width: 450px;
 	margin: auto;
 	margin-top: 30px;
 	text-align: center;
@@ -59,16 +94,18 @@
 	text-decoration: none;
 }
 </style>
-<div class="goodshoplist">
-	총 ${itemCount}개의 업소가 있습니다. 
-	<c:if test="${induty[0] == '한식' || induty[0] == '중식' || induty[0] == '일식' || induty[0] == '경양식'}">
-	<ul id="foodtab">
-		<li><img src="images/foodtab/한식.png" onclick="location.href='goodshoplist.do?induty=한식'"></li>
-		<li><img src="images/foodtab/중식.png" onclick="location.href='goodshoplist.do?induty=중식'"></li>
-		<li><img src="images/foodtab/일식.png" onclick="location.href='goodshoplist.do?induty=일식'"></li>
-		<li><img src="images/foodtab/경양식.png" onclick="location.href='goodshoplist.do?induty=경양식'"></li>
-	</ul>
+<c:if test="${induty[0] == '한식' || induty[0] == '중식' || induty[0] == '일식' || induty[0] == '경양식'}">
+	<div id="foodtab_wrap">
+		<div id="foodtab">
+			<img src="/GoodShop/images/foodtab/korea.png" onclick="location.href='goodshoplist.do?induty=한식'">
+			<img src="/GoodShop/images/foodtab/china.png" onclick="location.href='goodshoplist.do?induty=중식'">
+			<img src="/GoodShop/images/foodtab/japan.png" onclick="location.href='goodshoplist.do?induty=일식'">
+			<img src="/GoodShop/images/foodtab/west.png" onclick="location.href='goodshoplist.do?induty=경양식'">
+		</div>
+	</div>
 	</c:if>
+<div class="goodshoplist">
+	총 <b>${itemCount}</b>개의 업소가 있습니다. 
 	<c:forEach items="${list}" var="goodshop" begin="${(itemlistPage-1)*5}" end="${itemlistPage*5-1}" varStatus="itemIndex">
 		<div class="goodshopitem">
 			<div class="photo">
@@ -77,10 +114,16 @@
 				</a>
 			</div>
 			<div class="desc">
-				${goodshop.dataTitle}<br>
-				${goodshop.adres}<br>
-				${goodshop.area}<br>
-				${goodshop.telNo}<br>
+				<ul>
+					<li>
+						<a href="/GoodShop/goodshopview.do?dataSid=${goodshop.dataSid}">
+							${goodshop.dataTitle}
+						</a>
+					</li>
+					<li>${goodshop.adres}</li>
+					<li>${goodshop.area}</li>
+					<li>${goodshop.telNo}</li>
+				</ul>
 			</div>
 			<div class="induty">
 				${goodshop.appnPrdlstPc}
@@ -99,7 +142,7 @@
 		
 		<c:if test="${startlist > 5}">
 			<a href="goodshoplist.do?itemlistPage=1${moveinduty}">처음으로</a> ...
-			<a href="goodshoplist.do?itemlistPage=${endlist-5}${moveinduty}">이전</a>
+			<a href="goodshoplist.do?itemlistPage=${startlist-1}${moveinduty}">이전</a>
 		</c:if>
 		<c:forEach var="i" begin="${startlist}" end="${endlist}" step="1">
 			|<c:choose>
@@ -112,7 +155,7 @@
 			</c:choose>
 		</c:forEach>|
 		<c:if test="${endlist < itemlistCount}">
-			<a href="goodshoplist.do?itemlistPage=${startlist+5}${moveinduty}">다음</a> ...
+			<a href="goodshoplist.do?itemlistPage=${endlist+1}${moveinduty}">다음</a> ...
 			<a href="goodshoplist.do?itemlistPage=${itemlistCount}${moveinduty}">끝으로</a>
 		</c:if>
 	</div>
