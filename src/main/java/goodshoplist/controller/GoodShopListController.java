@@ -13,6 +13,7 @@ import javax.xml.bind.Unmarshaller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import goodshoplist.model.rfcOpenApi;
 import goodshoplist.model.list;
@@ -21,7 +22,8 @@ import goodshoplist.model.list;
 public class GoodShopListController {
 	
 	@RequestMapping("goodshoplist.do")
-	public String list(String[] induty, HttpSession session, Model model) throws MalformedURLException{
+	public String list(String[] induty, @RequestParam(defaultValue="1") int itemlistPage, 
+			HttpSession session, Model model) throws MalformedURLException{
 		rfcOpenApi rfc = (rfcOpenApi) session.getAttribute("all");
 		
 		if(rfc == null){
@@ -37,6 +39,15 @@ public class GoodShopListController {
 						+ "&startPage=1"));
 				rfc = (rfcOpenApi) unmrsllr.unmarshal(new URL("http://data.jeju.go.kr/rest/goodshop/getGoodShopList?authApiKey=vJO38V6UMen%2F0VjFYeinr4CZBSl9xf9rRQw%2FJyn%2FxEvNJi0mrdkNvtw2YoWvL8T%2F%2FJ4MarOGJI5Psoamset0qg%3D%3D"
 						+ "&pageSize="+rfc.getBody().getTotalCount()));
+				
+				List<list> temp = rfc.getBody().getData().getList();
+				for(list iter : temp){
+					String str = iter.getAppnPrdlstPc();
+					str = str.replaceAll("0원, ", "0원<br>").replaceAll("0원,", "0원<br>").replaceAll("0원 ", "0원<br>").replaceAll("0원 , ", "0원<br>")
+							.replaceAll("\\), ", ")<br>").replaceAll("\\),", ")<br>");
+					iter.setAppnPrdlstPc(str);
+				}
+				rfc.getBody().getData().setList(temp);
 				session.setAttribute("all", rfc);
 			} catch (JAXBException e) {
 				e.printStackTrace();
@@ -50,7 +61,9 @@ public class GoodShopListController {
 		}
 		
 		model.addAttribute("list", result);
-		
+		model.addAttribute("induty", induty);
+		model.addAttribute("itemlistPage", itemlistPage);
+		model.addAttribute("itemCount", result.size());
 		return "goodshoplist";
 	}
 	

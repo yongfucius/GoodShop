@@ -6,12 +6,15 @@
     height: 550px;
     position: fixed;
     left: 50%;
-    top: 200px;
+    top: 280px;
     margin-left: 500px;
+    border: 1px solid #17375E;
 }
 .history_label{
-	height: 30px;
+	height: 50px;
 	text-align: center;
+	background-image: url("/GoodShop/images/history/historyLabel.png");
+	background-size: contain;
 }
 .history_container{
 	height: 400px;
@@ -27,51 +30,47 @@
 	height: 80px;
 }
 .history_item img{
-	margin: auto;
+	height: 70px;
+	padding: 2px;
 }
 
 .history_content{
 	position: absolute;
 	width: 300px;
 	margin: 0px;
-	right: 160px;
-	top: 65px;
+	right: 170px;
+	top: 100px;
 }
-
 .content_txt{
 	width: 300px;
 	margin: 0px;
+	padding: 10px;
 	position: absolute;
-	border: 1px solid black;
-	background-color: white;
-}
-.history_item img{
-	height: 70px;
-	margin-top: 5px;
+	border: 1px solid white;
+	background-color: #17375E;
+	color: white;
 }
 
 .scrollerUp{
-	
 	height: 30px;
-	margin: auto;
+	margin: 10px auto;
 	position: relative;
 	cursor: pointer;
-	background-image: url("images/arrowUp.png");
+	background-image: url("/GoodShop/images/history/arrowUp.png");
 	background-size: contain;
 }
 .scrollerDown{
-	
 	height: 30px;
-	margin: auto;
+	margin: 10px auto;
 	position: relative;
 	cursor: pointer;
-	background-image: url("images/arrowDown.png");
+	background-image: url("/GoodShop/images/history/arrowDown.png");
 	background-size: contain;
 }
 </style>
 
 <div class="history">
-	<div class="history_label">방문 목록</div>
+	<div class="history_label"></div>
 	<div class="scrollerUp" style="width:0px;"></div>
 	<div class="history_content"></div>
 	<div class="history_container" style="overflow:hidden;">
@@ -113,14 +112,14 @@ function makeList(){
 			txt.className = "content_txt";
 			txt.style.display = "none";
 			txt.style.top = i * 80 +"px";
-			txt.innerHTML = historyList[i].dataTitle+"<br><br>"+historyList[i].appnPrdlstPc;
+			txt.innerHTML = "<b>"+historyList[i].dataTitle+"</b>"+"<br><br>"+historyList[i].appnPrdlstPc;
 			$(".history_content").append(txt);
 			
 			var content = "";
 			content += "<a href='goodshopview.do?dataSid="+historyList[i].dataSid+"'>";
-			content += "<img src='/GoodShop/images/photos/"+historyList[i].dataSid+"/"+historyList[i].dataSid+"_01.png'>";
+			content += "<img src='/GoodShop/images/photos/"+historyList[i].dataSid+"/"+historyList[i].dataSid+"_01.png' style='border:3px solid white;'>";
 			content += "</a>";
-			item.innerHTML = content;
+			item.innerHTML += content;
 			$(".history_list").append(item);
 		}
 		
@@ -134,10 +133,14 @@ function makeList(){
 			$(".scrollerDown").css("width", "0px");
 			var scrollNum = $(".history_item").length - 5;
 			$(".history_list").css("top", -scrollNum * 80 + "px");
+			$(".history_content").css("top", -scrollNum * 80 + 100+"px");
 			break;
 		}
 	}else{
-		$(".history_list").html("최근 본 업소가 없습니다. ");
+		var item = document.createElement("div");
+		item.className = "history_item";
+		item.innerHTML = "<br><br><br><br>최근 본 업소가 없습니다. ";
+		$(".history_list").append(item);
 	}
 	
 	historyCookie = encodeURIComponent(JSON.stringify(historyList));
@@ -146,6 +149,7 @@ function makeList(){
 	
 	return historyIndex;
 }
+
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -164,9 +168,11 @@ $(document).ready(function(){
 	$(".history_item img").hover(function(){
 		var child = $(this).parent().parent().prevAll().length+1;
 		$(".history_content .content_txt:nth-child("+child+")").show();
+		$(this).css("border", "3px solid #17375E");
 	}, function(){
 		var child = $(this).parent().parent().prevAll().length+1;
 		$(".history_content .content_txt:nth-child("+child+")").hide();
+		$(this).css("border", "3px solid white");
 	});
 	
 	$(".scrollerDown").click(function(){
