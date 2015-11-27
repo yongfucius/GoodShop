@@ -193,6 +193,7 @@ $(document).ready(function(){
 	<p>근처 같은 업종의 다른 착한가격업소</p>
 	<div id="google_map" style="width: 800px; height: 500px;"></div>
 </div>
+
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfJMh25mUQRqsUx1T8uOsaAILoFGcY8A8&sensor=true또는false"></script>
 <script type="text/javascript">

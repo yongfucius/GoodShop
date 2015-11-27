@@ -2,46 +2,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<style>
-.signform{
-	width:1000px;
-	margin: auto;
-	font-size: 12px;
-}
-.signform div{
-	width: 500px;
-	height: 70px;
-	margin: auto;
-	background-color: antiquewhite;
-	position: relative;
-}
-.signform input{
-	border: none;
-	background: white;
-	width: 400px;
-	height: 30px;
-	position: absolute;
-	top: 10px;
-	left: 50px;
-}
-.signform label{
-	width: 380px;
-	height: 20px;
-	position: absolute;
-	top: 50px;
-	left: 60px;
-	color: red;
-}
+<head>
+<link href="/GoodShop/style/signupstyle.css" rel="stylesheet" type="text/css">
+</head>
 
-</style>
 <c:choose>
 <c:when test="${complete}">
 	<div class="complete" style="width:400px; height:400px; margin:auto; font-size:30px; text-align:center;">가입이 완료되었습니다. </div>
 </c:when> 
 <c:otherwise>
 	<script src="scripts/signUp.js"></script>
-	<div class="signform">
-		<form:form commandName="command" onsubmit="return checkSubmit();">
+	<div class="title">
+		<a href="/GoodShop/"><img src="/GoodShop/images/logo.gif"></a>
+	</div>
+	<div class ="wrapper_table">
+	<div class="join_header"><p>회원 가입</p></div>
+	<div class="signform">			
+		 <form:form commandName="command" onsubmit="return checkSubmit();">
 			<div class="form_id">
 				<form:input path="id" placeholder="아이디" onblur="checkId();" maxlength="20"/>
 				<label id="id_msg" ></label>
@@ -62,8 +39,12 @@
 				<form:input path="name" placeholder="닉네임" onblur="checkName();" maxlength="10"/>
 				<label id="name_msg"></label>
 			</div>
+			   	<!-- <div class="join_footer">
+			   	<input type="button" value="가입" onclick="doSubmit()"></div> -->
 			<div class="form_submit"><input type="submit" value="가입하기" id="submit"/></div>
 		</form:form>
-	</div>
+		</div></div>
+
+</form>
 </c:otherwise>
 </c:choose>

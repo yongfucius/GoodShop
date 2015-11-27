@@ -29,7 +29,7 @@ public class SignUpController {
 	@RequestMapping(method=RequestMethod.GET)
 	public String form(MemberCommand command){
 		
-		return "signUp";
+		return "member/signUp";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
@@ -37,6 +37,6 @@ public class SignUpController {
 		service.signUp(command);
 		
 		model.addAttribute("complete", true);
-		return "signUp";
+		return "member/signUp";
 	}
 }
