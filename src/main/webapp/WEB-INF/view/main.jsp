@@ -5,10 +5,7 @@
 	width: 850px;
 	margin: auto;
 }
-.main img{
-	width: 850px;
-}
 </style>
 <div class="main">
-	<img src="/GoodShop/images/main.png">
+	<img src="/GoodShop/images/main.png" width="850px">
 </div>
