@@ -38,6 +38,10 @@
 	visited: none;
 }
 
+.content {
+	border-top: 1px solid #D5D5D5;
+}
+
 </style>
 
 <div class="notice_content">
@@ -63,7 +67,7 @@
 					<th>작성일</th>
 					<td>${notice.regdate}</td>
 				</tr>
-				<tr>
+				<tr class="content">
 					<th>내 용</th>
 					<td>${notice.content}</td>
 				</tr>

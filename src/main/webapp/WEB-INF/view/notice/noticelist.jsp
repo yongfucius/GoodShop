@@ -47,6 +47,11 @@
 	text-decoration: none;
 }
 
+.list_button a {
+	color: black;
+	text-decoration: none;
+}
+
 .page_move{
 	width: 400px;
 	margin: auto;
