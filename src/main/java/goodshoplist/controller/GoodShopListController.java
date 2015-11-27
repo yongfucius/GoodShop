@@ -39,6 +39,15 @@ public class GoodShopListController {
 						+ "&startPage=1"));
 				rfc = (rfcOpenApi) unmrsllr.unmarshal(new URL("http://data.jeju.go.kr/rest/goodshop/getGoodShopList?authApiKey=vJO38V6UMen%2F0VjFYeinr4CZBSl9xf9rRQw%2FJyn%2FxEvNJi0mrdkNvtw2YoWvL8T%2F%2FJ4MarOGJI5Psoamset0qg%3D%3D"
 						+ "&pageSize="+rfc.getBody().getTotalCount()));
+				
+				List<list> temp = rfc.getBody().getData().getList();
+				for(list iter : temp){
+					String str = iter.getAppnPrdlstPc();
+					str = str.replaceAll("0원, ", "0원<br>").replaceAll("0원,", "0원<br>").replaceAll("0원 ", "0원<br>").replaceAll("0원 , ", "0원<br>")
+							.replaceAll("\\), ", ")<br>").replaceAll("\\),", ")<br>");
+					iter.setAppnPrdlstPc(str);
+				}
+				rfc.getBody().getData().setList(temp);
 				session.setAttribute("all", rfc);
 			} catch (JAXBException e) {
 				e.printStackTrace();

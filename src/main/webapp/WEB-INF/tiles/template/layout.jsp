@@ -9,6 +9,8 @@
 body{
 	margin: 0px;
 	padding: 0px;
+	font-size: 12px/1.5;
+	font-family: "맑은고딕",tahoma,dotum,sans-serif;
 }
 
 hr{
@@ -16,6 +18,7 @@ hr{
 }
 
 #menu_wrap{
+	background: transparent url("/GoodShop/images/bg_header.png") repeat-x;
 }
 </style>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
