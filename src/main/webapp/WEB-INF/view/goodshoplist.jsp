@@ -7,26 +7,6 @@
 	margin: 60px auto;
 }
 
-#foodtab_wrap{
-	position: absolute;
-	top: 216px;
-	width: 100%;
-	height: 50px;
-	margin: 0px;
-	background: transparent url("/GoodShop/images/foodtab/bg_tab.png") repeat-x;
-}
-#foodtab{
-	list-style-type: none;
-	height: 50px;
-	position: absolute;
-	right: 50%;
-}
-#foodtab img{
-	float: left;
-	height: 50px;
-	cursor: pointer;
-}
-
 .goodshopitem{
 	width: 800px;
 	position: relative;
@@ -40,7 +20,6 @@
 	height: 130px;
 }
 .photo img{
-	height: 130px;
 	margin: auto;
 }
 
@@ -78,9 +57,15 @@
 
 .induty{
 	width: 260px;
+	height: 130px;
 	position: absolute;
-	top: 40px;
+	top: 0px;
 	left: 540px;
+	display: table;
+}
+.induty_content{
+	display: table-cell;
+	vertical-align: middle;
 }
 
 .move{
@@ -94,29 +79,22 @@
 	text-decoration: none;
 }
 </style>
-<c:if test="${induty[0] == '한식' || induty[0] == '중식' || induty[0] == '일식' || induty[0] == '경양식'}">
-	<div id="foodtab_wrap">
-		<div id="foodtab">
-			<img src="/GoodShop/images/foodtab/korea.png" onclick="location.href='goodshoplist.do?induty=한식'">
-			<img src="/GoodShop/images/foodtab/china.png" onclick="location.href='goodshoplist.do?induty=중식'">
-			<img src="/GoodShop/images/foodtab/japan.png" onclick="location.href='goodshoplist.do?induty=일식'">
-			<img src="/GoodShop/images/foodtab/west.png" onclick="location.href='goodshoplist.do?induty=경양식'">
-		</div>
-	</div>
-	</c:if>
 <div class="goodshoplist">
 	총 <b>${itemCount}</b>개의 업소가 있습니다. 
+	<c:forEach items="${induty}" var="indutyArray" varStatus="stat">
+		<c:set var="moveinduty" value="${stat.first ? '' : moveinduty}&induty=${indutyArray}" />
+	</c:forEach>
 	<c:forEach items="${list}" var="goodshop" begin="${(itemlistPage-1)*5}" end="${itemlistPage*5-1}" varStatus="itemIndex">
 		<div class="goodshopitem">
 			<div class="photo">
-				<a href="/GoodShop/goodshopview.do?dataSid=${goodshop.dataSid}">
-				<img src="/GoodShop/images/photos/${goodshop.dataSid}/${goodshop.dataSid}_01.png">
+				<a href="/GoodShop/goodshopview.do?dataSid=${goodshop.dataSid}&itemlistPage=${itemlistPage}${moveinduty}">
+				<img src="/GoodShop/images/photos/${goodshop.dataSid}/${goodshop.dataSid}_01.png" height="130px">
 				</a>
 			</div>
 			<div class="desc">
 				<ul>
 					<li>
-						<a href="/GoodShop/goodshopview.do?dataSid=${goodshop.dataSid}">
+						<a href="/GoodShop/goodshopview.do?dataSid=${goodshop.dataSid}&itemlistPage=${itemlistPage}${moveinduty}">
 							${goodshop.dataTitle}
 						</a>
 					</li>
@@ -126,7 +104,7 @@
 				</ul>
 			</div>
 			<div class="induty">
-				${goodshop.appnPrdlstPc}
+				<div class="induty_content">${goodshop.appnPrdlstPc}</div>
 			</div>
 		</div>
 	</c:forEach>
@@ -136,9 +114,6 @@
 		<c:set var="startlist" value="${itemlist*5+1}" />
 		<c:set var="endlist" value="${startlist+5-1}" />
 		<c:if test="${endlist > itemlistCount}"><c:set var="endlist" value="${itemlistCount}" /></c:if>
-		<c:forEach items="${induty}" var="indutyArray" varStatus="stat">
-			<c:set var="moveinduty" value="${stat.first ? '' : moveinduty}&induty=${indutyArray}" />
-		</c:forEach>
 		
 		<c:if test="${startlist > 5}">
 			<a href="goodshoplist.do?itemlistPage=1${moveinduty}">처음으로</a> ...

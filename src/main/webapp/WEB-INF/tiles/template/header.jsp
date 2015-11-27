@@ -306,6 +306,7 @@ $(document).ready(check);
                             <fieldset>
                                 <label for="login_pwd">비밀번호</label>
                                 <input type="password" name="login_pwd" id="login_pwd" onkeypress="checkCapsLock(event);"/>
+                                <label id="login_pwd_msg" style="height:15px; width:200px; font-weight:bold; font-size:12px; color:darkorange;"></label>
                             </fieldset>
                             <input type="submit" id="login" value="로그인" />
                             </fieldset>
