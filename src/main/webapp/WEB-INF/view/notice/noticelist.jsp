@@ -67,13 +67,19 @@
 	</div>
 
 <table class="notice_board">
-
+<colgroup>
+	<col style="width:100px;">
+	<col style="width:350px;">
+	<col style="width:100px;">
+	<col style="width:150px;">
+	<col style="width:50px;">
+</colgroup>
 <tr>
-	<th width="100px">번 호</th>
-	<th width="350px">제 목</th>
-	<th width="100px">작성자</th>
-	<th width="150px">작성일</th>
-	<th width="50px">조 회</th>
+	<th>번 호</th>
+	<th>제 목</th>
+	<th>작성자</th>
+	<th>작성일</th>
+	<th>조 회</th>
 </tr>
 <c:forEach var="important" items="${important}">
 <tr>
