@@ -9,7 +9,8 @@
 	margin-bottom: 100px;
 }
 .notice_header{
-	font-size:large;
+	text-align: center;
+	font-size: 200%;
 	margin-top: 30px;
 }
 .notice_name{
@@ -19,34 +20,34 @@
 .notice_count{
 	float: right;
 	font-size: small;
-	margin-right: 10px;
 }
 
 .notice_board{
 	width: 750px;
-	margin: auto;
+	margin: 0;
 	margin-top: 25px;
-	border: 1px solid black;
-	
+	border-top: 1px solid #D5D5D5;
+	border-bottom: 1px solid #D5D5D5;
+	border-collapse: collapse;
 }
 
 .notice_board tr{
 	height: 30px;
 }
 .notice_board tr:first-child{
-	background-color: black;
-	color: white;
-	border-bottom: none;
+	background-color: #AFE1FF;
 }
 .notice_board td{
 	border-collapse: collapse;
-	border-bottom: 1px dotted black;
-}
-.notice_board tr:last-child td{
-	border-bottom: none;
+	border-top: 1px solid #D5D5D5;
 }
 
 .notice_board a:link, .notice_board a:visited{
+	color: black;
+	text-decoration: none;
+}
+
+.list_button a {
 	color: black;
 	text-decoration: none;
 }
@@ -61,6 +62,7 @@
 	color: blue;
 	text-decoration: none;
 }
+
 </style>
 
 <div class="notice">
@@ -86,13 +88,13 @@
 </tr>
 <c:forEach var="important" items="${important}">
 <tr>
-	<td><b>공지</b></td>
+	<td align="center"><b>공지</b></td>
 	<td>
 		<a href="noticecontent.do?num=${important.num}&pageNum=${currentPage}"><b>${important.subject}</b></a>
 	</td>
 	<td>${important.writer}</td>
 	<td>${important.regdate}</td>
-	<td>${important.readcount}</td>
+	<td align="center">${important.readcount}</td>
 </tr>
 </c:forEach>
 <c:if test="${count == 0}">
@@ -103,13 +105,13 @@
 <c:if test="${count > 0}">
 <c:forEach var="notice" items="${noticeList}">
 <tr>
-	<td><c:out value="${number}" /><c:set var="number" value="${number-1}" /></td>
+	<td align="center"><c:out value="${number}" /><c:set var="number" value="${number-1}" /></td>
 	<td>
 		<a href="noticecontent.do?num=${notice.num}&pageNum=${currentPage}">${notice.subject}</a>
 	</td>
 	<td>${notice.writer}</td>
 	<td>${notice.regdate}</td>
-	<td>${notice.readcount}</td>
+	<td align="center">${notice.readcount}</td>
 </tr>
 </c:forEach>
 </c:if>
