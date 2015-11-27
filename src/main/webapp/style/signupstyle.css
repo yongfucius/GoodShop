@@ -1,0 +1,115 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.title{
+	width: 327px;
+	margin: auto;
+}
+.title img{
+	height: 150px;
+}
+
+.body{
+ width: 1000px;
+ margin: 0 auto;
+}
+
+.wrapper_table{
+ margin: 50px auto;
+ box-shadow :0 0 10px #bbb;
+ /*border: 1px solid blue;*/
+ height: auto;
+ text-align: center;
+ width: 500px;
+
+}
+/*join_header*/
+.wrapper_table .join_header{
+ background-color: #3253B9;
+ border-bottom: 1px solid #bbb;
+ height: 50px;
+}
+
+.join_header p{
+ float: left;
+ font-size: 1.2em;
+ font-weight: bold;
+ padding: 13px 0px 30px 13px;
+}
+
+/*join_footer*/
+.wrapper_table .join_footer{
+ height: 50px;
+ text-align: center;
+}
+
+.join_footer input{
+ border: 0px;
+ background: #3c9;
+ width: 400px;
+ height: 40px;
+ margin: 5px;
+ font-size: 20px;
+ color: #ddd;
+}
+
+.signform{
+	width:500px;
+	margin: 0 auto;
+	font-size: 12px;
+}
+.signform div{
+	width: 500px;
+	height: 72px;
+	margin: auto;
+	background-color: #E4E4E4;
+	position: relative;
+}
+.signform input{
+	border: none;
+	background: white;
+	width: 400px;
+	height: 30px;
+	position: absolute;
+	top: 10px;
+	left: 50px;
+}
+.signform label{
+	width: 380px;
+	height: 20px;
+	position: absolute;
+	top: 50px;
+	left: 60px;
+	color: red;
+}
+.signform .form_submit{	
+ height: 65px;
+ text-align: center;
+}
+.form_submit input{    border: 0px;
+    background: #3c9;
+    width: 392px;
+    height: 33px;
+    margin: 0px;
+    font-size: 19px;
+    color: #ddd;
+}
