@@ -22,7 +22,7 @@ public class LostIdPwdController {
 	@RequestMapping(value="lostId.do", method=RequestMethod.GET)
 	public String lostId(){
 		
-		return "lostId";
+		return "member/lostId";
 	}
 	@RequestMapping(value="lostId.do", method=RequestMethod.POST)
 	public String sendIdEmail(String lostId_email, Model model) throws Exception{
@@ -34,18 +34,18 @@ public class LostIdPwdController {
 			email.setSubject("제주 착한가격업소 아이디 찾기 메일입니다. ");
 			emailSender.SendEmail(email);
 			
-			return "sendedEmail";
+			return "member/sendedEmail";
 		}
 		else{
 			model.addAttribute("noEmail", true);
-			return "lostId";
+			return "member/lostId";
 		}
 	}
 	
 	@RequestMapping(value="lostPwd.do", method=RequestMethod.GET)
 	public String lostPwd(){
 		
-		return "lostPwd";
+		return "member/lostPwd";
 	}
 	@RequestMapping(value="lostPwd.do", method=RequestMethod.POST)
 	public String sendPwdEmail(String lostPwd_id, String lostPwd_email, Model model) throws Exception{
@@ -58,16 +58,16 @@ public class LostIdPwdController {
 				email.setSubject("제주 착한가격업소 비밀번호 찾기 메일입니다. ");
 				emailSender.SendEmail(email);
 				
-				return "sendedEmail";
+				return "member/sendedEmail";
 			}else{
 				model.addAttribute("lostPwd_id", lostPwd_id);
 				model.addAttribute("noEmail", true);
-				return "lostPwd";
+				return "member/lostPwd";
 			}
 		}
 		else{
 			model.addAttribute("noId", true);
-			return "lostPwd";
+			return "member/lostPwd";
 		}
 	}
 }
