@@ -125,35 +125,7 @@ $(document).ready(check);
         </div>
     </div>
    </div>
-	<%-- <div class="sign">
-		<div class="login">
- 		<c:choose>
-			<c:when test="${sessionScope.check == 1}">
-				<c:out value="${sessionScope.memName}" />
-				<button onclick="location.href='memberInfo.do'">회원정보</button>
-				<button onclick="location.href='find.do'">즐겨찾기</button>
-				<button onclick="location.href='signOut.do'">로그아웃</button>
-			</c:when>
-			<c:otherwise>
-				<label id="login_pwd_msg" style="position:absolute; top:-15px; height:15px; width:200px; right:50px; font-weight:bold; font-size:12px; color:darkorange;"></label>
-				<form name="login" method="post" action="signIn.do" onsubmit="return space();">
-					<label for="login_id" >계정&nbsp;</label>
-					<input type="text" id="login_id" name="login_id" size="10" value="${sessionScope.memId}"/>
-					<label for="login_pwd" >비밀번호&nbsp;</label>
-					<input type="password" id="login_pwd" name="login_pwd" size="10" onkeypress="checkCapsLock(event);"/>
-					<input type="submit" value="로그인" />
-				</form>
-				<c:remove var="check" scope="session" />
-				<c:remove var="memId" scope="session" />
-			</c:otherwise>
-		</c:choose> 
-		</div>
-		<button onclick="location.href='signUp.do'" style="margin-top:3px">회원가입</button>
-		<button onclick="location.href='lostId.do'" style="margin-top:3px">아이디 찾기</button>
-		<button onclick="location.href='lostPwd.do'" style="margin-top:3px">비밀번호 찾기</button>
-	</div> --%>
-	
-	<tiles:importAttribute name="menuList" />
+   	<tiles:importAttribute name="menuList" />
 	<div class="menu">
 		<c:forEach var="menu" items="${menuList}" varStatus="status">
 			<a href="${menu}"><img src="/GoodShop/images/menu/${status.count}.png"></a>

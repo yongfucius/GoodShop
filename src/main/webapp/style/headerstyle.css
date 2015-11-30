@@ -1,3 +1,44 @@
+.table{
+	width: 800px;
+	margin: auto;
+}
+td, tr{
+	border: 1px solid black;
+	position: relative;
+	padding: 5px;
+}
+
+.kind{
+	width: 200px;
+	height: 140px;
+	text-align: center;
+}
+
+.table tr td:first-child{
+	background-color: #D5D5D5;
+}
+.pwd_table tr td:first-child{
+	background-color: white;
+}
+
+.value{
+	display: inline-table;
+	width: 600px;
+	margin: 4px;
+	position: relative;
+}
+.value button{
+	margin-top: 5px;
+}
+.cancel{
+	margin-top: 5px;
+	margin-left: 5px;
+	position: relative;
+}
+
+.pwd_table tr td{
+	border: none;
+}
 .header{
 	width: 1000px;
 	height: 216px;
@@ -10,6 +51,19 @@
 	height: 150px;
 }
 
+.membertitle{
+	width: 327px;
+	margin: auto;
+}
+.membertitle img{
+	height: 150px;
+}
+.memberinfo{
+	width: 840px;
+	height: 216px;
+	margin: 0px auto;
+	position: relative;
+}
 .sign{
 	position: absolute;
 	top: 10px;

@@ -3,6 +3,8 @@
 <head>
 <link href="/GoodShop/style/lostpwdstyle.css" rel="stylesheet" type="text/css">
 </head>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script>
 	$(document).ready(function() {
 		if ("<c:out value='${noId}'/>")
@@ -18,20 +20,11 @@
 	<div class="lostPwd_header"><p>비밀번호 찾기</p></div>
 	<div class="lostPwd">
 	<form method="post">
-			<!-- <div class="form_email">
-			<input type="text" id="lostId_email" placeholder="이메일주소" name="lostId_email"> </div>
-			<div class="form_submit"><input type="submit" value="이메일 보내기" id="submit"/></div> -->
 			<div class ="form_id">
 			<input type="text" id="lostPwd_id" placeholder="아이디" name="lostPwd_id" value="${lostPwd_id}"></div>
 			<div clas="lostPwd_email">
 			<input type="text" id="lostPwd_id" placeholder="이메일 주소" name="lostPwd_email"></div>
 			<div class="form_submit"><input type="submit" value="이메일 보내기" id="submit"/></div>
-			
-		<%-- <label for="lostPwd_id">아이디 </label>
-		<input type="text"id="lostPwd_id" name="lostPwd_id" value="${lostPwd_id}"><br>
-		<label for="lostPwd_email">이메일 주소</label>
-		<input type="text"id="lostPwd_email" name="lostPwd_email"><br> 
-		<input type="submit" value="보내기"> --%>
 	</form>
 	</div>
 </div>

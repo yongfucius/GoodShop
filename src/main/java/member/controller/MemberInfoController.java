@@ -29,7 +29,7 @@ public class MemberInfoController {
 	public String info(HttpSession session, Model model){
 		if(session.getAttribute("memId") == null) return "redirect:main.do";
 		model.addAttribute("member", service.getMember((String) session.getAttribute("memId")));
-		return "memberInfo";
+		return "member/memberInfo";
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
@@ -44,7 +44,7 @@ public class MemberInfoController {
 			String currPwd = params.get("curr_pwd")[0];
 			if(!member.getPwd().equals(currPwd)){
 				model.addAttribute("pwdNotEqual", false);
-				return "memberInfo";
+				return "member/memberInfo";
 			}
 		}else{
 			if(params.containsKey("name")) kind = "name";
@@ -55,7 +55,7 @@ public class MemberInfoController {
 		
 		model.addAttribute("member", member);
 		model.addAttribute("complete", true);
-		return "memberInfo";
+		return "member/memberInfo";
 	}
 	
 }
