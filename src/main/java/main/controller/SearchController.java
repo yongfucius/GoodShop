@@ -73,13 +73,19 @@ public class SearchController {
 		List<list> res = new ArrayList<list>();
 		
 		for(list iter : list){
-			if(iter.getDataTitle().contains(search)) res.add(iter);
+			if(iter.getDataTitle().contains(search)){
+				if(!res.contains(iter)) res.add(iter);
+			}
 		}
 		for(list iter : list){
-			if(iter.getInduty().contains(search)) res.add(iter);
+			if(iter.getInduty().contains(search)){
+				if(!res.contains(iter)) res.add(iter);
+			}
 		}
 		for(list iter : list){
-			if(iter.getAppnPrdlstPc().contains(search)) res.add(iter);
+			if(iter.getAppnPrdlstPc().contains(search)){
+				if(!res.contains(iter)) res.add(iter);
+			}
 		}
 		
 		model.addAttribute("searchRes", res);

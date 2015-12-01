@@ -14,6 +14,9 @@
 .find_table th{
 	height: 30px;
 }
+.find_table td{
+	border: 1px solid black;
+}
 
 .find_img{
 	width: 100px;

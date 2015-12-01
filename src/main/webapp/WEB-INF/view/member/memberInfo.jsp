@@ -7,6 +7,26 @@
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="scripts/memberInfo.js"></script>
 <script>
+$(function() {
+    var button = $('#loginButton');
+    var box = $('#loginBox');
+    var form = $('#loginForm');
+    button.removeAttr('href');
+    button.mouseup(function(login) {
+        box.toggle();
+        button.toggleClass('active');
+    });
+    form.mouseup(function() { 
+        return false;
+    });
+    $(this).mouseup(function(login) {
+        if(!($(login.target).parent('#loginButton').length > 0)) {
+            button.removeClass('active');
+            box.hide();
+        }
+    });
+});
+
 $(document).ready(function(){
 	if("<c:out value="${pwdNotEqual}"/>"){
 		alert("알맞은 비밀번호가 아닙니다. ")

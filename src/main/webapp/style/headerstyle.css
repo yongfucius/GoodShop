@@ -2,7 +2,7 @@
 	width: 800px;
 	margin: auto;
 }
-td, tr{
+.table td, .table tr{
 	border: 1px solid black;
 	position: relative;
 	padding: 5px;
