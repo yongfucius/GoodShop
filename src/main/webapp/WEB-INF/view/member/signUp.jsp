@@ -5,6 +5,8 @@
 <head>
 <link href="/GoodShop/style/signupstyle.css" rel="stylesheet" type="text/css">
 </head>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 <c:choose>
 <c:when test="${complete}">
