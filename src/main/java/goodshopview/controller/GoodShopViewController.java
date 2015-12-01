@@ -6,7 +6,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -65,13 +64,13 @@ public class GoodShopViewController {
 		model.addAttribute("result", result);
 		model.addAttribute("dataSidList", dataSidList);
 
-		String resInduty = result.getInduty();
+		if(induty == null) induty = new String[]{result.getInduty()};
 		rfcOpenApi all = GoodShopListController.loadAndSave(session);
 
 		List<list> list2 = all.getBody().getData().getList(); 
 		List<list> result2 = new ArrayList<list>();
 		for (list dto : list2) {
-			if(find(resInduty, dto.getInduty())) result2.add(dto);
+			if(find(induty, dto.getInduty())) result2.add(dto);
 		}
 		
 		int end = result2.size();
@@ -84,9 +83,10 @@ public class GoodShopViewController {
 		return "goodshopview";
 	}
 	
-	private boolean find(String induty, String textContent) {
-		if (induty.equals(textContent)) {
-			return true;
+	private boolean find(String[] induty, String textContent) {
+		for (int i = 0; i < induty.length; i++) {
+			if (induty[i].equals(textContent))
+				return true;
 		}
 		return false;
 	}

@@ -125,7 +125,16 @@ $(document).ready(check);
         </div>
     </div>
    </div>
-   	<tiles:importAttribute name="menuList" />
+	
+	<form id="searchbox" action="search.do" onsubmit="return selectedSubmit(this)">
+		<input id="search" name="search" type="text" autocomplete="off" placeholder="가게 이름, 업종, 메뉴로 검색" onkeyup="searchTitle(this.value, event);" onkeydown="updownRes(event);" onfocus="searchTitle(this.value, event);" onblur="document.getElementById('searchTitleRes').innerHTML = '';">
+		<input id="submit" type="submit" value="검색">
+		<ul id='searchTitleRes'></ul>
+	</form>
+	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="/GoodShop/scripts/searchTitle.js"></script>
+	
+	<tiles:importAttribute name="menuList" />
 	<div class="menu">
 		<c:forEach var="menu" items="${menuList}" varStatus="status">
 			<a href="${menu}"><img src="/GoodShop/images/menu/${status.count}.png"></a>

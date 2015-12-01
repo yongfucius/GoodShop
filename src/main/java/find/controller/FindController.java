@@ -28,25 +28,9 @@ public class FindController {
 	
 	@RequestMapping("find.do")
 	public String find(HttpSession session, Model model) throws MalformedURLException {
-		JAXBContext jc = null;
-		Unmarshaller unmrsllr = null;
-		rfcOpenApi rfc = null;
-		List<list> result = new ArrayList<list>();
-		try {
-			String id = (String)session.getAttribute("memId");
-			if(id == null) return "redirect:main.do";
-			List<String> dataSidList = service.selectsid(id);//id 값으로 datasid값 list로 받아		
-			jc = JAXBContext.newInstance(rfcOpenApi.class);
-			unmrsllr = jc.createUnmarshaller();
-			for(String dataSid : dataSidList){
-				rfc = (rfcOpenApi) unmrsllr.unmarshal(
-						new URL("http://data.jeju.go.kr/rest/goodshop/getGoodShopView?authApiKey=vJO38V6UMen%2F0VjFYeinr4CZBSl9xf9rRQw%2FJyn%2FxEvNJi0mrdkNvtw2YoWvL8T%2F%2FJ4MarOGJI5Psoamset0qg%3D%3D"
-								+ "&dataSid=" + dataSid));// api에서 불러오는것
-				result.add(rfc.getBody().getData().getList().get(0));
-			}
-		} catch (JAXBException e) {
-			e.printStackTrace();
-		}
+		String id = (String)session.getAttribute("memId");
+		if(id == null) return "redirect:main.do";
+		List<list> result = makeResult(id);
 
 		model.addAttribute("list", result);
 
@@ -61,5 +45,41 @@ public class FindController {
 		else if(mode.equals("off")) res = service.deleteFind(dataSid, id);
 		
 		return ""+res;
+	}
+	
+	@RequestMapping("findDelete.do")
+	public String deleteFind(HttpSession session, String dataSid, Model model) throws MalformedURLException{
+		String id = (String)session.getAttribute("memId");
+		service.deleteFind(dataSid, id);
+		List<list> result = makeResult(id);
+		
+		model.addAttribute("list", result);
+		return "find";
+	}
+	
+	private List<list> makeResult(String id) throws MalformedURLException{
+		List<String> dataSidList = service.selectsid(id);//id 값으로 datasid값 list로 받아		
+		List<list> result = new ArrayList<list>();
+		try {
+			JAXBContext jc = JAXBContext.newInstance(rfcOpenApi.class);
+			Unmarshaller unmrsllr = jc.createUnmarshaller();
+			
+			for(String dataSid : dataSidList){
+				rfcOpenApi rfc = (rfcOpenApi) unmrsllr.unmarshal(
+						new URL("http://data.jeju.go.kr/rest/goodshop/getGoodShopView?authApiKey=vJO38V6UMen%2F0VjFYeinr4CZBSl9xf9rRQw%2FJyn%2FxEvNJi0mrdkNvtw2YoWvL8T%2F%2FJ4MarOGJI5Psoamset0qg%3D%3D"
+								+ "&dataSid=" + dataSid));// api에서 불러오는것
+				result.add(rfc.getBody().getData().getList().get(0));
+			}
+			for(list iter : result){
+				String str = iter.getAppnPrdlstPc();
+				str = str.replaceAll("0원 , ", "0원<br>").replaceAll("0원, ", "0원<br>").replaceAll("0원,", "0원<br>").replaceAll("0원 ", "0원<br>")
+						.replaceAll("\\), ", ")<br>").replaceAll("\\),", ")<br>");
+				iter.setAppnPrdlstPc(str);
+			}
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 }
