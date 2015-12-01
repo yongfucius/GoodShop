@@ -16,8 +16,8 @@
 .find12 {
 	width: 50px;
 	height: 50px;
-	top: -60px;
-	left: 30px;
+	bottom: 0px;
+	right: 50px;
 	position: absolute;
 	cursor: pointer;
 }
@@ -71,71 +71,82 @@ h1{
 	font-size: 120%;
 }
 </style>
-<script>
-$(document).ready(function(){
-	
-	var sidChk = "<c:out value="${sidcheck}"/>";
-	if(sidChk) $("#find1").show();
-	else if("${sessionScope.memId}" != "") $("#find2").show();
-	
-	$("#find1").click(function(){
-		var find_dataSid = "<c:out value="${result.dataSid}"/>";
-		var find_id = "<c:out value="${sessionScope.memId}"/>";
-		var mode = "off";
-		
-		var xhf = new XMLHttpRequest();
-		xhf.onreadystatechange = function(){
-			if(xhf.readyState == 4 && xhf.status == 200){
-				var res = xhf.responseText;
-				if(res > 0){
-					$("#find1").fadeOut();
-					$("#find2").fadeIn();
-				}
-			}
-		};
-		xhf.open("GET", "findToggle.do?dataSid="+find_dataSid+"&id="+find_id+"&mode="+mode, true);
-		xhf.send();
-	});
-	
-	$("#find2").click(function(){
-		var find_dataSid = "<c:out value="${result.dataSid}"/>";
-		var find_id = "<c:out value="${sessionScope.memId}"/>";
-		var mode = "on";
-		
-		var xhf = new XMLHttpRequest();
-		xhf.onreadystatechange = function(){
-			if(xhf.readyState == 4 && xhf.status == 200){
-				var res = xhf.responseText;
-				if(res > 0){
-					$("#find2").fadeOut();
-					$("#find1").fadeIn();
-				}
-			}
-		};
-		xhf.open("GET", "findToggle.do?dataSid="+find_dataSid+"&id="+find_id+"&mode="+mode, true);
-		xhf.send();
-	});
-});
-</script>
 
 <!-- 업소 사진 -->
 <div class="goodshopview">
 	<h1>${result.dataTitle}</h1>
-	<c:choose>
-		<c:when test="${empty induty}"><a href="goodshoplist.do?itemlistPage=${itemlistPage}&induty=${result.induty}">처음으로</a></c:when>
-		<c:otherwise>
-			<c:forEach items="${induty}" var="indutyArray" varStatus="stat">
-				<c:set var="moveinduty" value="${stat.first ? '' : moveinduty}&induty=${indutyArray}" />
-			</c:forEach>
-			<a href="goodshoplist.do?itemlistPage=${itemlistPage}${moveinduty}">목록으로</a>
-		</c:otherwise>
-	</c:choose>
+	
+	<div class="find">
+		<img class="find12" id="find1" src="/GoodShop/images/find/find1.png" style="display: none;">
+		<img class="find12" id="find2" src="/GoodShop/images/find/find2.png" style="display: none;">
+	</div>
+	
+	<c:forEach var="sid" items="${dataSidList}">
+		<c:if test="${sid ==  result.dataSid}">
+			<c:set var="sidcheck" value="true" />
+		</c:if>
+	</c:forEach>
+	
+	<script>
+	$(document).ready(function(){
+		
+		var sidChk = "<c:out value="${sidcheck}"/>";
+		if(sidChk) $("#find1").show();
+		else if("${sessionScope.memId}" != "") $("#find2").show();
+		
+		$("#find1").click(function(){
+			if($(".find12:animated").length > 0) return;
+			var find_dataSid = "<c:out value="${result.dataSid}"/>";
+			var find_id = "<c:out value="${sessionScope.memId}"/>";
+			var mode = "off";
+			
+			var xhf = new XMLHttpRequest();
+			xhf.onreadystatechange = function(){
+				if(xhf.readyState == 4 && xhf.status == 200){
+					var res = xhf.responseText;
+					if(res > 0){
+						$("#find1").fadeOut();
+						$("#find2").fadeIn();
+					}
+				}
+			};
+			xhf.open("GET", "findToggle.do?dataSid="+find_dataSid+"&id="+find_id+"&mode="+mode, true);
+			xhf.send();
+		});
+		
+		$("#find2").click(function(){
+			if($(".find12:animated").length > 0) return;
+			var find_dataSid = "<c:out value="${result.dataSid}"/>";
+			var find_id = "<c:out value="${sessionScope.memId}"/>";
+			var mode = "on";
+			
+			var xhf = new XMLHttpRequest();
+			xhf.onreadystatechange = function(){
+				if(xhf.readyState == 4 && xhf.status == 200){
+					var res = xhf.responseText;
+					if(res > 0){
+						$("#find2").fadeOut();
+						$("#find1").fadeIn();
+					}
+				}
+			};
+			xhf.open("GET", "findToggle.do?dataSid="+find_dataSid+"&id="+find_id+"&mode="+mode, true);
+			xhf.send();
+		});
+	});
+	</script>
+	
+	<c:forEach items="${induty}" var="indutyArray" varStatus="stat">
+		<c:set var="moveinduty" value="${stat.first ? '' : moveinduty}&induty=${indutyArray}" />
+	</c:forEach>
+	<a href="goodshoplist.do?itemlistPage=${itemlistPage}${moveinduty}">목록으로</a>
+	
 	<div class="goodshopphotos"></div>
 	<div class="goodshopphotos_container">
-		<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_01.png" onerror="this.style.display='none'">
-		<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_02.png" onerror="this.style.display='none'">
-		<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_03.png" onerror="this.style.display='none'">
-		<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_04.png" onerror="$(this).hide()">
+		<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_01.png" onload="this.style.display=''" style="display:none;">
+		<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_02.png" onload="this.style.display=''" style="display:none;">
+		<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_03.png" onload="this.style.display=''" style="display:none;">
+		<img src="/GoodShop/images/photos/${result.dataSid}/${result.dataSid}_04.png" onload="this.style.display=''" style="display:none;">
 	</div>
 	<script>
 	$(document).ready(function(){
@@ -148,7 +159,7 @@ $(document).ready(function(){
 		}, function(){});
 	});
 	</script>
-
+	
 	<table class="goodshopdetail">
 		<tr>
 			<th>업종</th>
@@ -180,16 +191,6 @@ $(document).ready(function(){
 		</tr>
 	</table>
 
-	<div class="find">
-		<img class="find12" id="find1" src="/GoodShop/images/find/find1.png" style="display: none;">
-		<img class="find12" id="find2" src="/GoodShop/images/find/find2.png" style="display: none;">
-	</div>
-	
-	<c:forEach var="sid" items="${dataSidList}">
-		<c:if test="${sid ==  result.dataSid}">
-			<c:set var="sidcheck" value="true" />
-		</c:if>
-	</c:forEach>
 	<p>근처 같은 업종의 다른 착한가격업소</p>
 	<div id="google_map" style="width: 800px; height: 500px;"></div>
 </div>
