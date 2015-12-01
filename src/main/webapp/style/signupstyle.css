@@ -105,8 +105,9 @@ time, mark, audio, video {
  height: 65px;
  text-align: center;
 }
-.form_submit input{    border: 0px;
-    background: #3c9;
+.form_submit input{
+	border: 0px;
+    background: #8FA6EA;
     width: 392px;
     height: 33px;
     margin: 0px;

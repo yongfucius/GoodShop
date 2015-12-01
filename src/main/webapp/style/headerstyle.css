@@ -2,7 +2,7 @@
 	width: 800px;
 	margin: auto;
 }
-td, tr{
+.table td, .table tr{
 	border: 1px solid black;
 	position: relative;
 	padding: 5px;
@@ -120,7 +120,7 @@ td, tr{
     font-weight:bold; 
     text-shadow:1px 1px #fff; 
     padding:7px 29px 9px 10px;
-    background:url(/GoodShop/images/login/loginArrow.png) no-repeat 53px 7px;
+    background:url(/GoodShop/images/login/loginArrow.png) no-repeat 58px 7px;
     display:block
 }
 #loginButton span2 {
@@ -129,7 +129,7 @@ td, tr{
     font-weight:bold; 
     text-shadow:1px 1px #fff; 
     padding:7px 29px 9px 10px;
-    background:url(/GoodShop/images/login/loginArrow.png) no-repeat 53px 7px;
+    background:url(/GoodShop/images/login/loginArrow.png) no-repeat 65px 7px;
     display:block
 }
 #loginButton:hover {
@@ -151,7 +151,10 @@ td, tr{
 }
 
 #loginButton.active span {
-    background-position:53px -76px;
+    background-position:58px -76px;
+}
+#loginButton.active span2 {
+    background-position:65px -76px;
 }
 
 /* A Line added to overlap the border */
