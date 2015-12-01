@@ -95,4 +95,10 @@
 	<put-attribute name="body" value="/WEB-INF/view/find.jsp" />
 </definition>
 
+<!-- 검색 -->
+<definition name="search" extends="base_layout">
+	<put-attribute name="title" value="검색 결과" />
+	<put-attribute name="body" value="/WEB-INF/view/search.jsp" />
+</definition>
+
 </tiles-definitions>

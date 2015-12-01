@@ -76,8 +76,8 @@
 	<col style="width:100px;">
 	<col style="width:350px;">
 	<col style="width:100px;">
-	<col style="width:150px;">
-	<col style="width:50px;">
+	<col style="width:140px; ">
+	<col style="width:60px;">
 </colgroup>
 <tr>
 	<th>번 호</th>
