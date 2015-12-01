@@ -42,6 +42,16 @@ public class FindController {
 				rfc = (rfcOpenApi) unmrsllr.unmarshal(
 						new URL("http://data.jeju.go.kr/rest/goodshop/getGoodShopView?authApiKey=vJO38V6UMen%2F0VjFYeinr4CZBSl9xf9rRQw%2FJyn%2FxEvNJi0mrdkNvtw2YoWvL8T%2F%2FJ4MarOGJI5Psoamset0qg%3D%3D"
 								+ "&dataSid=" + dataSid));// api에서 불러오는것
+				
+				List<list> temp = rfc.getBody().getData().getList();
+				for(list iter : temp){
+					String str = iter.getAppnPrdlstPc();
+					str = str.replaceAll("0원 , ", "0원<br>").replaceAll("0원, ", "0원<br>").replaceAll("0원,", "0원<br>").replaceAll("0원 ", "0원<br>")
+							.replaceAll("\\), ", ")<br>").replaceAll("\\),", ")<br>");
+					iter.setAppnPrdlstPc(str);
+				}
+				rfc.getBody().getData().setList(temp);
+				
 				result.add(rfc.getBody().getData().getList().get(0));
 			}
 		} catch (JAXBException e) {
@@ -49,6 +59,7 @@ public class FindController {
 		}
 
 		model.addAttribute("list", result);
+		model.addAttribute("findCount", result.size());
 
 		return "find";
 	}

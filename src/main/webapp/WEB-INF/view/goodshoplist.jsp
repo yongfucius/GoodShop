@@ -80,7 +80,7 @@
 }
 </style>
 <div class="goodshoplist">
-	총 <b>${itemCount}</b>개의 업소가 있습니다. 
+	총 <b>${itemCount}</b>개의 업소가 있습니다.
 	<c:forEach items="${induty}" var="indutyArray" varStatus="stat">
 		<c:set var="moveinduty" value="${stat.first ? '' : moveinduty}&induty=${indutyArray}" />
 	</c:forEach>
