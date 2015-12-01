@@ -74,9 +74,11 @@
 			</table>
 
 			<div class="content_button">
-				<a href="noticewriteForm.do?num=${notice.num}&pageNum=${pageNum}">&nbsp수정</a>
-				<a href="noticedelete.do?num=${notice.num}&pageNum=${pageNum}"
-					onclick="return confirm('삭제하시겠습니까?');">&nbsp삭제</a>
+				<c:if test="${sessionScope.memId == 'admin'}">
+					<a href="noticewriteForm.do?num=${notice.num}&pageNum=${pageNum}">&nbsp수정</a>
+					<a href="noticedelete.do?num=${notice.num}&pageNum=${pageNum}"
+						onclick="return confirm('삭제하시겠습니까?');">&nbsp삭제</a>
+				</c:if>
 				<a href="noticelist.do?pageNum=${pageNum}">&nbsp목록</a>
 			</div>
 
