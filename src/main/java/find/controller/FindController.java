@@ -28,11 +28,13 @@ public class FindController {
 	
 	@RequestMapping("find.do")
 	public String find(HttpSession session, Model model) throws MalformedURLException {
+
 		String id = (String)session.getAttribute("memId");
 		if(id == null) return "redirect:main.do";
 		List<list> result = makeResult(id);
 
 		model.addAttribute("list", result);
+		model.addAttribute("findCount", result.size());
 
 		return "find";
 	}

@@ -27,6 +27,7 @@
 	width: 35px;
 	cursor: pointer;
 }
+
 </style>
 <div class="find">
 	<table class="find_table">
