@@ -1,59 +1,99 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<style>
-.table{
-	width: 800px;
-	margin: auto;
-}
-td, tr{
-	border: 1px solid black;
-	position: relative;
-	padding: 5px;
-}
-
-.kind{
-	width: 200px;
-	height: 140px;
-	text-align: center;
-}
-
-.table tr td:first-child{
-	background-color: #D5D5D5;
-}
-.pwd_table tr td:first-child{
-	background-color: white;
-}
-
-.value{
-	display: inline-table;
-	width: 600px;
-	margin: 4px;
-	position: relative;
-}
-.value button{
-	margin-top: 5px;
-}
-.cancel{
-	margin-top: 5px;
-	margin-left: 5px;
-	position: relative;
-}
-
-.pwd_table tr td{
-	border: none;
-}
-</style>
+<head>
+<link href="/GoodShop/style/headerstyle.css" rel="stylesheet" type="text/css">
+</head>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="scripts/memberInfo.js"></script>
 <script>
+$(function() {
+    var button = $('#loginButton');
+    var box = $('#loginBox');
+    var form = $('#loginForm');
+    button.removeAttr('href');
+    button.mouseup(function(login) {
+        box.toggle();
+        button.toggleClass('active');
+    });
+    form.mouseup(function() { 
+        return false;
+    });
+    $(this).mouseup(function(login) {
+        if(!($(login.target).parent('#loginButton').length > 0)) {
+            button.removeClass('active');
+            box.hide();
+        }
+    });
+});
+
 $(document).ready(function(){
 	if("<c:out value="${pwdNotEqual}"/>"){
 		alert("알맞은 비밀번호가 아닙니다. ")
 	}
 });
 </script>
+
 <c:if test="${complete}">
 	<div class="complete" style="width:400px; height:100px; margin:auto; font-size:25px; text-align:center;">수정되었습니다. </div>
 </c:if> 
+<div class="memberinfo">
+	<div class="membertitle">
+		<a href="/GoodShop/"><img src="/GoodShop/images/logo.gif"></a>
+	</div>
+	<div class="sign">
+   	 <div id="bar">
+   	     <div id="container">
+   	         <!-- Login Starts Here -->
+   	         <div id="loginContainer">
+   	         	<c:choose>
+   	         	 <c:when test="${sessionScope.check == 1}">
+                 
+   	             <a href="#" id="loginButton"><span2>회원정보</span2><em></em></a>
+   	             <span id="memNameSpan"><c:out value="${sessionScope.memName}" /></span>
+   	             <div style="clear:both"></div>
+   	             <div id="loginBox">                
+   	                 <form id="loginForm">
+    	                    <fieldset id="body">
+                            	<fieldset>
+                            	<a href="/GoodShop/memberInfo.do">회원정보</a>&nbsp;
+                            	<a href="/GoodShop/find.do">즐겨찾기</a>
+                            	</fieldset>
+                            </fieldset>
+                        <span><a href="/GoodShop/signOut.do">로그아웃</a></span>
+   	                 </form>
+   	             </div>
+
+   	         	</c:when>
+   	         	<c:otherwise>
+   	             <a href="#" id="loginButton"><span>로그인</span><em></em></a>
+   	             <div style="clear:both"></div>
+   	             <div id="loginBox" >                
+   	                 <form id="loginForm" name="login" method="post" action="signIn.do" onsubmit="return space();">
+    	                    <fieldset id="body">
+                            <fieldset>
+                                <label for="login_id">아이디</label>
+                                <input type="text" name="login_id" id="login_id" value="${sessionScope.memId}"/>
+                            </fieldset>
+                            <fieldset>
+                                <label for="login_pwd">비밀번호</label>
+                                <input type="password" name="login_pwd" id="login_pwd" onkeypress="checkCapsLock(event);"/>
+                            </fieldset>
+                            <input type="submit" id="login" value="로그인" />
+                            </fieldset>
+                        <span><a href="/GoodShop/signUp.do">회원가입</a>&nbsp;
+                        <a href="/GoodShop/lostId.do">아이디 찾기</a>&nbsp;
+                        <a href="/GoodShop/lostPwd.do">비밀번호 찾기</a></span>
+                    </form>
+                    <c:remove var="check" scope="session" />
+					<c:remove var="memId" scope="session" />
+                </div>
+                </c:otherwise>
+                </c:choose>
+            </div>
+        </div>
+    </div>
+   </div>
 <table class="table">
 <tr>
 	<td><div class="kind"><br><b>이름</b></div></td>
@@ -129,3 +169,4 @@ $(document).ready(function(){
 	</td>
 </tr>
 </table>
+</div>
