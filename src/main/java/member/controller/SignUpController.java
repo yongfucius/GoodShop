@@ -15,7 +15,7 @@ import member.service.MemberService;
 public class SignUpController {
 	
 	@Autowired
-	MemberService service;
+	private MemberService service;
 
 	public void setService(MemberService service) {
 		this.service = service;

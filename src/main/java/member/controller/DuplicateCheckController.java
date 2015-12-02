@@ -11,7 +11,7 @@ import member.service.MemberService;
 public class DuplicateCheckController {
 	
 	@Autowired
-	MemberService service;
+	private MemberService service;
 
 	public void setService(MemberService service) {
 		this.service = service;

@@ -10,7 +10,7 @@ import member.model.MemberCommand;
 public class MemberService {
 	
 	@Autowired
-	SqlSession sql;
+	private SqlSession sql;
 
 	public void setSql(SqlSession sql) {
 		this.sql = sql;
